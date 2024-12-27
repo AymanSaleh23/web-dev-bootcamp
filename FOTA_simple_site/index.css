@@ -1,0 +1,107 @@
+* {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+button {
+    font-size: 20px;
+    padding: 2px;
+    margin: 5px;
+    width: 10%;
+    background-color: rgb(93, 68, 240);
+    color: aliceblue;
+    border-radius: 50px;
+    transition: ease-in-out 150ms;
+}
+
+button:hover {
+    font-size: 25px;
+    background-color: aliceblue;
+    color: rgb(93, 68, 240);
+}
+
+button:active {
+    font-size: 20px;
+    background-color: rgb(206, 206, 206);
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+}
+
+header {
+    background-color: rgb(215, 215, 223);
+    border-radius: 20px;
+    padding: 24px;
+    transition: ease-in-out 500ms;
+    text-align: center;
+    margin: 5px 12.5% 5px 12.5%;
+}
+
+header:hover {
+    font-size: 30px;
+    background-color: rgb(163, 163, 239);
+    color: rgb(231, 231, 245);
+    margin: 7px 15% 7px 15%;
+    border-radius: 20% 0 20% 0
+}
+
+nav {
+    background-color: rgb(159, 199, 211);
+    border-radius: 20px;
+    padding: 24px;
+    transition: ease-in-out 500ms;
+    text-align: center;
+    margin: 5px 12.5% 5px 12.5%;
+}
+
+nav:hover {
+    background-color: rgb(172, 159, 211);
+    border-radius: 0 20% 0 20%
+}
+
+main {
+    text-align: center;
+    background-color: rgb(211, 192, 159);
+    border-radius: 20px;
+    padding: 24px;
+    transition: ease-in-out 500ms;
+    margin: 5px 12.5% 5px 12.5%;
+}
+
+main:hover {
+    background-color: rgb(172, 159, 211);
+    border-radius: 0 20% 0 20%
+}
+
+main a {
+    text-decoration: none;
+    font-size: 20px;
+    transition: ease-in-out 250ms;
+}
+
+main a:hover {
+    font-size: 23px;
+    background-color: beige;
+}
+
+main a:active {
+    font-size: 20px;
+    background-color: black;
+}
+
+
+footer {
+    background-color: rgb(149, 178, 201);
+    border-radius: 20px;
+    padding: 24px;
+    transition: ease-in-out 500ms;
+    margin: 5px 12.5% 5px 12.5%;
+}
+
+footer:hover {
+    background-color: rgb(160, 211, 159);
+    border-radius: 20% 0 20% 0;
+}
