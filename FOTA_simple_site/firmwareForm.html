@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FRU</title>
+    <link rel="stylesheet" href="firmstyles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Firmware Remote Updater (FRU)</h1>
+        <p>The Firmware updater is one of our features we support to update the linked-online controllers by a full new
+            Firmware within simple steps</p>
+    </header>
+    <main>
+        <form action="">
+            <div>
+                <label for="controller" id="IDmcu">controller unique ID</label>
+                <input type="text" name="cnt" id="controller" placeholder="controller ID" required min="10" max="1000">
+            </div>
+            <div>
+                <label for="file_t">File Type</label><br>
+                <label for="bin_file">.BIN</label>
+                <input type="radio" name="file_t" id="bin_file" value="bin" checked>
+                <label for="hex_file">.HEX</label>
+                <input type="radio" name="file_t" id="hex_file" value="hex">
+                <label for="elf_file">.ELF</label>
+                <input type="radio" name="file_t" id="elf_file" value="elf">
+
+            </div>
+            <div>
+                <label for="Firmware">New Firmware</label>
+                <input type="file" name="file" id="new_firm" placeholder="choose the new Firmware"
+                    accept=".bin,.elf,.hex" required>
+            </div>
+            <div>
+                <label for="up_date" id="lbl_up_date">Update Firm Date</label>
+                <input type="date" name="date2up" id="up_date" required>
+            </div>
+            <div>
+                <button id="up_sched">sched_update</button>
+                <input type="button" value="Update Now" id="up_now">
+            </div>
+
+        </form>
+
+
+    </main>
+    <footer>
+        <h2>By</h2>
+        <a href="https://www.linkedin.com/in/ayman-saleh-zien" target="_blank">Ayman Saleh</a>
+        <br>
+        <div id="contacts">
+            Contact Us:
+            <ul>
+                <li><a href="forms.html">Node Registeration Form NRF</a></li>
+                <li><a href="https://www.google.com" id="g">Google</a></li>
+                <li><a href="https://www.youtube.com" id="y">YouTube</a></li>
+                <li><a href="https://www.twitter.com" class="x">X</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

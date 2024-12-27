@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Registeration</title>
+    <link rel="stylesheet" href="itemstyles.css">
+</head>
+
+<body>
+    <header>
+        <section id="welcomeSectID" class="welcomeSect">
+            <h2>New Items Registeration</h2>
+        </section>
+    </header>
+    <main>
+
+        <form action="/items-add/" target="_blank">
+
+            <div>
+                <label for="Node Name"> Enter the Node Name</label>
+                <input type="text" required id="Node_Name" name="n_name" placeholder="deviceName" minlength="5">
+            </div>
+            <div>
+                <label for="ID"> Enter the Node Uniqe ID</label>
+                <input type="number" required id="ID" name="n_id" placeholder="uniqueID" min="1000" max="1024"
+                    value="1000">
+            </div>
+            <div>
+                <label for="DateToExp"> Enter Days to Expire the node</label>
+                <input type="checkbox" name="cb_date_exp" id="cb_exp" aria-valuemax="1" aria-valuemin="0">
+                <br>
+                <input type="date" id="DateToExp" name="n_xd" min="2024-12-1" max="2024-12-25">
+
+            </div>
+            <div>
+                <label for="n_dt">Select data holder for Node Element</label>
+                <select name="dataType" id="n_dt" required>
+                    <option value="int" name="n_t" selected>int</option>
+                    <option value="flaot" name="n_t">float</option>
+                    <option value="string" name="n_t">String</option>
+                    <option value="boolean" name="n_t">boolean</option>
+                </select>
+            </div>
+            <button>Verify Node</button>
+        </form>
+
+    </main>
+    <footer>
+        <h2>Contact Us</h2>
+        <div id="sectFooter">
+            <p>Feel Free to contact us for more info and more Q&As</p>
+            <ul>
+                <li><a href="firmwareForm.html">Firmware Remote Update FRU</a></li>
+                <li><a href="https://www.google.com">Google</a></li>
+                <li><a href="https://www.youtube.com">YouTube</a></li>
+                <li><a href="https://www.instegram.com">Instegram</a></li>
+                <li><a href="https://www.linkedin.com">Linked-In</a></li>
+
+            </ul>
+        </div>
+
+    </footer>
+</body>
+
+</html>

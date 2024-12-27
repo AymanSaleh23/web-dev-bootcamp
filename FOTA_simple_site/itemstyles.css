@@ -1,0 +1,107 @@
+* {
+    font-size: 30px;
+    transition-duration: 750ms;
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: rgb(42, 2, 80);
+    border-radius: 30px;
+    line-height: 3;
+}
+
+h1,
+h2:hover {
+    background-color: rgb(225, 199, 249);
+    font-size: 120%;
+    transition-duration: 500ms;
+}
+
+header {
+    background-color: rgb(77, 114, 169);
+    border-radius: 30px;
+}
+
+main {
+    border-radius: 30px;
+    background-color: rgb(207, 207, 229);
+    text-align: center;
+    line-height: 3;
+    color: rgb(98, 98, 134);
+}
+
+main:hover {
+    background-color: rgb(242, 225, 238);
+    ;
+    transition-duration: 500ms;
+}
+
+footer {
+    background-color: rgb(200, 203, 207);
+    border-radius: 30px;
+}
+
+footer p {
+    color: blue;
+}
+
+#sectFooter li a {
+    text-decoration-line: none;
+    color: gray;
+    font-size: 100%;
+}
+
+#sectFooter li a:hover {
+    text-decoration-line: none;
+    background-color: gray;
+    color: white;
+    font-size: 150%;
+    transition-duration: 500ms;
+}
+
+#sectFooter li a:active {
+    text-decoration-line: none;
+    background-color: gray;
+    color: black;
+    transition-duration: 250ms;
+    font-size: 125%;
+}
+
+
+form button {
+    color: blue;
+    background-color: darkgray;
+    border-radius: 30px;
+    border-color: blue;
+    font-size: 21;
+}
+
+form button:hover {
+    color: white;
+    background-color: blue;
+    font-size: 150%;
+    transition-duration: 500ms;
+}
+
+form button:active {
+    color: blue;
+    background-color: greenyellow;
+    transition-duration: 250ms;
+    font-size: 100%;
+}
+
+
+#n_dt {
+    background-color: aliceblue;
+    color: darkslateblue;
+}
+
+#Node_Name {
+    color: blueviolet;
+    border-radius: 30px;
+}
+
+#ID {
+    border-radius: 30px;
+}
