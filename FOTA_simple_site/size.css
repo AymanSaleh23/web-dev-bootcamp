@@ -3,6 +3,11 @@
     transition: all 750ms;
 }
 
+a {
+    transition: ease-in-out 250ms;
+    text-decoration: none;
+}
+
 a:hover {
     box-shadow: 0em 0.4em .3em -0.1em rgb(13, 192, 94);
     transform: translateY(-0.3em);
@@ -11,4 +16,28 @@ a:hover {
 img:hover {
     box-shadow: 0em 0.5em .5em -0.3em rgb(120, 84, 211);
     transform: translateY(-0.3em);
+}
+
+button,
+input[type="button"]:hover {
+    cursor: pointer;
+}
+
+
+body {
+    background: no-repeat center/cover url("https://wallpapers.com/images/hd/black-shiny-background-rk5jk9e8m5kx4w1y.jpg");
+}
+
+header,
+main,
+nav,
+footer {
+    opacity: 0.7;
+}
+
+header:hover,
+main:hover,
+nav:hover,
+footer:hover {
+    opacity: 1;
 }

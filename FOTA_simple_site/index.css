@@ -49,7 +49,7 @@ header:hover {
     color: rgb(231, 231, 245);
     margin-left: 3em;
     margin-right: 3em;
-    border-radius: 1em 0 1em 0
+    border-radius: 1em 0 1em 0;
 }
 
 nav {
@@ -67,6 +67,7 @@ nav:hover {
     margin: 1em 8em 2em 8em;
 }
 
+
 main {
     text-align: center;
     background-color: rgb(211, 192, 159);
@@ -74,7 +75,6 @@ main {
     padding: 24px;
     transition: ease-in-out 500ms;
     margin: 1em 8em 2em 8em;
-
 }
 
 main:hover {
@@ -90,7 +90,6 @@ main a {
 
 main a:hover {
     font-size: 1.3em;
-    background-color: beige;
 }
 
 main a:active {
@@ -104,32 +103,28 @@ footer {
     border-radius: 1em;
     padding: 1em;
     transition: ease-in-out 500ms;
-    opacity: 0.3;
 }
 
 footer:hover {
-    background-color: rgb(160, 211, 159);
+    background-color: rgb(164, 168, 164);
     border-radius: 3em 0 3em 0;
     margin-left: 0em;
-    opacity: 1;
 }
 
-a {
-    transition: ease-in-out 250ms;
+footer a {
+    color: whitesmoke;
+    font-size: 2em;
 }
 
 footer a:hover {
-    font-size: 1.3em;
-
-    background-color: beige;
+    font-size: 2.3em;
 }
 
 footer a:active {
-
     background-color: black;
 }
 
 table {
-    padding-left: 0%;
+    margin: auto;
     display: inline;
 }
