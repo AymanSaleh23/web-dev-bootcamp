@@ -1,5 +1,5 @@
 * {
-    font-size: 10px;
+    font-size: 20px;
     transition: all 750ms;
 }
 
@@ -13,7 +13,7 @@ a:hover {
     transform: translateY(-0.3em);
 }
 
-img:hover {
+#logo:hover {
     box-shadow: 0em 0.5em .5em -0.3em rgb(120, 84, 211);
     transform: translateY(-0.3em);
 }
@@ -23,10 +23,10 @@ input[type="button"]:hover {
     cursor: pointer;
 }
 
-
 body {
     background: no-repeat center/cover url("https://wallpapers.com/images/hd/black-shiny-background-rk5jk9e8m5kx4w1y.jpg");
 }
+
 
 header,
 main,
