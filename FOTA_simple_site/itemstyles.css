@@ -67,10 +67,12 @@ footer p {
 
 form {
     font-size: 1em;
+    opacity: 0.4;
 }
 
 form:hover {
     font-size: 2em;
+    opacity: 1;
 }
 
 form button {

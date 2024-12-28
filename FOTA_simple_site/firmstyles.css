@@ -20,7 +20,7 @@ p::selection {
 }
 
 body {
-    background: lightskyblue;
+    background: rgb(181, 230, 195);
 }
 
 header {
@@ -33,7 +33,7 @@ header:hover {
     border-radius: 0em 1em 0em 1em;
     background: rgb(233, 203, 203);
     line-height: 3;
-    transition-duration: 750ms;
+    transition: 750ms;
 }
 
 main {
@@ -45,7 +45,7 @@ main {
 
 main:hover {
     background: rgb(154, 220, 191);
-    transition-duration: 750ms;
+    transition: 750ms;
     border-radius: 1em 0em 1em 0em;
 }
 
@@ -56,19 +56,18 @@ form {
     width: 50%;
     margin-left: 25%;
     border-radius: 2em 0.2em 2em 0.2em;
-    border-right: 5px blueviolet solid;
-    transition: 750ms ease-in-out;
-
+    border-right: 0.5em blueviolet solid;
+    transition: all 500ms;
+    opacity: 0.4;
 }
 
 form:hover {
     border-radius: 0.2em 2em 0.2em 2em;
-    line-height: 3;
-    margin-left: 12.5%;
-    width: 75%;
-    border-left: 5px blueviolet solid;
+    border: .3em rgb(168, 130, 238) solid;
+    border-left: .5em blueviolet solid;
     border-right: none;
-    transition-duration: 1000ms;
+    opacity: 1;
+    transform: scale(1.3);
 }
 
 footer {
@@ -78,7 +77,7 @@ footer {
 }
 
 footer:hover {
-    transition-duration: 500ms;
+    transition: 500ms;
     border-radius: 0em 1em 0em 1em;
     background: rgb(160, 146, 230);
 }
@@ -143,7 +142,7 @@ footer a {
 }
 
 footer a:hover {
-    transition-duration: 500ms;
+    transition-duration: 250ms;
     font-size: 1.25em;
 }
 
