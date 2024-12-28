@@ -3,7 +3,7 @@ h2 {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     line-height: 3;
-    font-size: 100%;
+    font-size: 1em;
     transition: 750ms ease-in-out;
 }
 
@@ -25,12 +25,12 @@ body {
 
 header {
     background: gray;
-    border-radius: 30px 0px 30px 0px;
+    border-radius: 1em 0em 1em 0em;
     transition: 750ms ease-in-out;
 }
 
 header:hover {
-    border-radius: 0px 30px 0px 30px;
+    border-radius: 0em 1em 0em 1em;
     background: rgb(233, 203, 203);
     line-height: 3;
     transition-duration: 750ms;
@@ -38,7 +38,7 @@ header:hover {
 
 main {
     background: lightcyan;
-    border-radius: 0px 30px 0px 30px;
+    border-radius: 0em 1em 0em 1em;
     transition: 750ms ease-in-out;
 
 }
@@ -46,7 +46,7 @@ main {
 main:hover {
     background: rgb(154, 220, 191);
     transition-duration: 750ms;
-    border-radius: 30px 0px 30px 0px;
+    border-radius: 1em 0em 1em 0em;
 }
 
 form {
@@ -55,74 +55,75 @@ form {
     text-align: center;
     width: 50%;
     margin-left: 25%;
-    border-radius: 30px 0px 30px 0px;
+    border-radius: 2em 0.2em 2em 0.2em;
+    border-right: 5px blueviolet solid;
     transition: 750ms ease-in-out;
 
 }
 
 form:hover {
-    border-radius: 0px 30px 0px 30px;
+    border-radius: 0.2em 2em 0.2em 2em;
     line-height: 3;
-    font-size: 150%;
     margin-left: 12.5%;
     width: 75%;
-    border-left-width: 5px;
-    border-left-color: blueviolet;
-    border-left-style: solid;
+    border-left: 5px blueviolet solid;
+    border-right: none;
     transition-duration: 1000ms;
-
 }
 
 footer {
     background: darkgrey;
-    border-radius: 30px 0px 30px 0px;
+    border-radius: 1em 0em 1em 0em;
     transition: 750ms ease-in-out;
 }
 
 footer:hover {
     transition-duration: 500ms;
-    border-radius: 0px 30px 0px 30px;
+    border-radius: 0em 1em 0em 1em;
     background: rgb(160, 146, 230);
 }
 
 #up_now {
     background-color: darkblue;
     color: azure;
-    border-radius: 7.5px;
+    border-radius: 1em;
+    padding: 0em 0.5em 0em 0.5em;
+    transition: ease-in-out 250ms;
 }
 
 #up_now:hover {
     background-color: rgba(0, 0, 139, 0.549);
     color: azure;
-    transition-duration: 250ms;
-    font-size: 125%;
+    font-size: 1.25em;
+    padding: 0em 0.7em 0em 0.7em;
 }
 
 #up_now:active {
     background-color: black;
     color: azure;
     transition-duration: 250ms;
-    font-size: 100%;
+    font-size: 1em;
 }
 
 #up_sched {
     background-color: darkgreen;
+    padding: 0em 0.5em 0em 0.5em;
     color: azure;
-    border-radius: 7.5px;
+    border-radius: 1em;
+    transition: ease-in-out 250ms;
 }
 
 #up_sched:hover {
     background-color: rgba(0, 100, 0, 0.395);
-
-    transition-duration: 250ms;
-    font-size: 125%;
+    font-size: 1.25em;
+    padding: 0em 0.7em 0em 0.7em;
 }
 
 #up_sched:active {
     background-color: black;
     color: azure;
     transition-duration: 250ms;
-    font-size: 100%;
+    font-size: 1em;
 }
 
 #lbl_up_date {
@@ -138,18 +139,18 @@ footer a {
 #contacts a:active {
     background: black;
     transition-duration: 250ms;
-    font-size: 100%;
+    font-size: 1em;
 }
 
 footer a:hover {
     transition-duration: 500ms;
-    font-size: 125%;
+    font-size: 1.25em;
 }
 
 #contacts {
     color: darkgrey;
     background-color: azure;
-    border-radius: 10px 50px 50px 10px;
+    border-radius: 1em 2em 2em 1em;
 }
 
 #contacts #g {
@@ -160,13 +161,13 @@ footer a:hover {
 h1:hover {
     color: rgb(210, 161, 169);
     transition-duration: 750ms;
-    font-size: 150%;
+    font-size: 1.5em;
 }
 
 h2:hover {
     color: white;
     transition-duration: 750ms;
-    font-size: 150%;
+    font-size: 1.5em;
 }
 
 #contacts #y {
@@ -180,19 +181,32 @@ h2:hover {
 }
 
 input[type="radio"] {
-    width: 30px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
+    accent-color: rgb(35, 0, 211);
 }
 
 input[type="text"] {
     color: blue;
-    border-radius: 20px;
+    border-radius: 1em;
     width: 50%;
     border-color: white;
+    padding-left: 1em;
+}
+
+input[type="date"],
+input[type="file"] {
+    color: rgb(135, 135, 155);
+    border-radius: 1em;
+    padding: 0.2em 1em .2em 1em;
 }
 
 footer [target="_blank"]:hover {
     font-family: 'Courier New', Courier, monospace;
     font-style: italic;
     transition-duration: 500ms;
+}
+
+footer>* {
+    padding-left: 1em;
 }

@@ -1,34 +1,33 @@
 * {
-    font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 button {
-    font-size: 20px;
-    padding: 2px;
-    margin: 5px;
-    width: 10%;
+    font-size: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
     background-color: rgb(93, 68, 240);
     color: aliceblue;
-    border-radius: 50px;
+    border-radius: 1em;
     transition: ease-in-out 150ms;
+    border-color: none;
 }
 
 button:hover {
-    font-size: 25px;
+    font-size: 1.3em;
     background-color: aliceblue;
     color: rgb(93, 68, 240);
 }
 
 button:active {
-    font-size: 20px;
+    font-size: 1em;
     background-color: rgb(206, 206, 206);
 }
 
 #logo {
-    height: 50px;
-    width: 50px;
+    margin-right: 9em;
+    height: 5em;
+    width: 5em;
 }
 
 header {
@@ -37,29 +36,31 @@ header {
     padding: 24px;
     transition: ease-in-out 500ms;
     text-align: center;
-    margin: 5px 12.5% 5px 12.5%;
+    margin: 1em 8em 2em 8em;
 }
 
 header:hover {
-    font-size: 30px;
+    font-size: 1em;
     background-color: rgb(163, 163, 239);
     color: rgb(231, 231, 245);
-    margin: 7px 15% 7px 15%;
-    border-radius: 20% 0 20% 0
+    margin-left: 3em;
+    margin-right: 3em;
+    border-radius: 1em 0 1em 0
 }
 
 nav {
     background-color: rgb(159, 199, 211);
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 2em;
+    padding: 1em;
     transition: ease-in-out 500ms;
     text-align: center;
-    margin: 5px 12.5% 5px 12.5%;
+    margin: 1em 8em 2em 8em;
 }
 
 nav:hover {
     background-color: rgb(172, 159, 211);
-    border-radius: 0 20% 0 20%
+    border-radius: 0 20% 0 20%;
+    margin: 1em 8em 2em 8em;
 }
 
 main {
@@ -68,40 +69,62 @@ main {
     border-radius: 20px;
     padding: 24px;
     transition: ease-in-out 500ms;
-    margin: 5px 12.5% 5px 12.5%;
+    margin: 1em 8em 2em 8em;
+
 }
 
 main:hover {
     background-color: rgb(172, 159, 211);
-    border-radius: 0 20% 0 20%
+    border-radius: 0 2em 0 2em;
+    margin-right: 3em;
 }
 
 main a {
     text-decoration: none;
-    font-size: 20px;
-    transition: ease-in-out 250ms;
+    font-size: 1em;
 }
 
 main a:hover {
-    font-size: 23px;
+    font-size: 1.3em;
     background-color: beige;
 }
 
 main a:active {
-    font-size: 20px;
+    font-size: 1em;
     background-color: black;
 }
 
 
 footer {
     background-color: rgb(149, 178, 201);
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 1em;
+    padding: 1em;
     transition: ease-in-out 500ms;
-    margin: 5px 12.5% 5px 12.5%;
+    margin: 1em 8em 2em 8em;
 }
 
 footer:hover {
     background-color: rgb(160, 211, 159);
-    border-radius: 20% 0 20% 0;
+    border-radius: 3em 0 3em 0;
+    margin-left: 3em;
+}
+
+a {
+    transition: ease-in-out 250ms;
+}
+
+footer a:hover {
+    font-size: 1.3em;
+
+    background-color: beige;
+}
+
+footer a:active {
+
+    background-color: black;
+}
+
+table {
+    padding-left: 0%;
+    display: inline;
 }

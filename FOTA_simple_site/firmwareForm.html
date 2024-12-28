@@ -4,6 +4,7 @@
 <head>
     <title>FRU</title>
     <link rel="stylesheet" href="firmstyles.css">
+    <link rel="stylesheet" href="size.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                 <input type="text" name="cnt" id="controller" placeholder="controller ID" required min="10" max="1000">
             </div>
             <div>
-                <label for="file_t">File Type</label><br>
+                <label for="file_t">Supported File Type</label><br>
                 <label for="bin_file">.BIN</label>
                 <input type="radio" name="file_t" id="bin_file" value="bin" checked>
                 <label for="hex_file">.HEX</label>
@@ -38,7 +39,7 @@
                 <input type="date" name="date2up" id="up_date" required>
             </div>
             <div>
-                <button id="up_sched">sched_update</button>
+                <button id="up_sched">Sched Update</button>
                 <input type="button" value="Update Now" id="up_now">
             </div>
 
