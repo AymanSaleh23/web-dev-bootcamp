@@ -1,3 +1,3 @@
-Simple Responsive Form
-Simple Responsive Blogography
+[DONE]	Simple Responsive Form
+[DONE]	Simple Responsive Blogography
 Refactor IOTA Site by Responsive one
