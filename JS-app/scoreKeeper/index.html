@@ -20,10 +20,10 @@
 
     </header>
     <main>
-        <div class="container text-center" style="width: 65%;" id="mainContainer">
+        <div class="container text-center border shadow rounded p-5 " style="width: 65%;" id="mainContainer">
 
             <img src="img.jpg" alt="" class="justify-content-center"
-                style=" width: 60%; height: 30rem; object-fit: cover;">
+                style=" width: 60%; height: 30rem; object-fit: cover; border-radius: 4rem; margin: 2rem;">
 
             <h2 class="display-6">Ping Pong score keeper</h2>
 
@@ -36,7 +36,7 @@
                 <b class="display-4">Round Score</b>
 
                 <select name="roundScore" id="roundScore" class="display-5 m-5 text-center "
-                    style="width: 10%; font-size: 3rem;">
+                    style="border-radius: 2rem; width: 10%; font-size: 3rem;">
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
@@ -46,9 +46,15 @@
 
 
             <div class="btn-group justify-content-center" role="group" style="width: 75%; height: 4rem;">
-                <button id="p_1_add" type="button" class="btn btn-success">+1 player 1</button>
-                <button id="p_2_add" type="button" class="btn btn-primary">+1 player 2</button>
-                <button id="resetBtn" type="button" class="btn btn-danger">Reset</button>
+                <button id="p_1_add" type="button" class="btn btn-success"
+                    style="font-size: 2rem; font-weight:700;border-radius: 1rem">
+                    +1 player 1</button>
+                <button id="p_2_add" type="button" class="btn btn-primary"
+                    style="font-size: 2rem; font-weight:700;border-radius: 1rem">
+                    +1 player 2</button>
+                <button id="resetBtn" type="button" class="btn btn-danger"
+                    style="font-size: 2rem; font-weight:700;border-radius: 1rem">
+                    Reset</button>
             </div>
 
 
