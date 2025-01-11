@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FRU</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: #515d6a !important;
+            /* Dark background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .nav-link,
+        .navbar .navbar-brand {
+            color: #7071ad !important;
+            /* Initial font color */
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand {
+            color: #dedae4 !important;
+            /* Font color on scroll */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark bg-transparent sticky-top">
+        <a href="index.html" class="navbar-brand"> <img
+                src="https://www.shutterstock.com/image-vector/firmware-update-icon-on-white-260nw-2326581903.jpg"
+                width="30" height="30" class="rounded" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="ota-home.html">FOTA</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="iot-home.html">IOT</a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="help.html">Help</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <header>
+        <div class="container d-flex justify-content-center align-items-center mb-4 ">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="container col-10 row text-center">
+                    <div class="col-12">
+                        <h1 class="display-4 mb-5 mt-3">Firmware Remote Updater (FRU)</h1>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-justify"> Flash Over-the-Air (FOTA) Technology
+                            Our FOTA service revolutionizes how you update your devices. Say goodbye to manual updates
+                            and
+                            lengthy
+                            processes. With just a few clicks, you can deploy firmware upgrades remotely, ensuring your
+                            devices are
+                            always running the latest software. This not only saves time but also enhances security and
+                            performance.
+                            Explore our FOTA tools today to keep your technology at its best without any hassle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <main>
+        <div class="container border rounded bg-light shadow-lg d-flex justify-content-center align-items-center pt-5">
+            <form action="">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-10 row justify-content-center align-items-center">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="row ">
+                                    <div class="col-sm-12 col-md-4 text-center">
+                                        <label for="controller" id="IDmcu">MCU unique ID</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8">
+                                        <input type="text" class="form-control" name="cnt" id="controller"
+                                            placeholder="controller ID" required min="10" max="1000">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4 text-center">
+                                        <label for="authentication-key" id="lbl-auth">MCU Authentication key</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8">
+                                        <input type="password" class="form-control" name="auth-key"
+                                            id="authentication-key" placeholder="Authentication" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-4">
+                                    <div class="form-group text-center">
+                                        <label for="file_t">File Type</label>
+                                        <select class="form-control form-control text-center" id="file_t">
+                                            <option>.BIN</option>
+                                            <option>.HEX</option>
+                                            <option>.ELF</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="up_date" id="lbl_up_date">Update Firm Date</label>
+                                        <input type="date" class="form-control" name="date2up" id="up_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="new_firm">New Firmware</label>
+                                        <input type="file" class="form-control-file" name="file" id="new_firm"
+                                            placeholder="choose the new Firmware" accept=".bin,.elf,.hex" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <button id="up_sched" class="form-control btn-success">Sched Update</button>
+                                        <label for="up_sched" id="lbl_update_note" class="form-text text-muted">Update
+                                            Firmware will be schedualled to the date you've selected</label>
+                                    </div>
+                                    <div class="col">
+                                        <button class="form-control btn-warning" id="up_now"> Update Now</button>
+                                        <label for="up_now" id="lbl_update_note" class="form-text text-muted">Update
+                                            Firmware will be flashed as soon as it's online</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <footer>
+            <div class="container m-5">
+                <blockquote class="blockquote-footer">Ayman Saleh <br>
+                    <p>&copy; 2025 IOTA. All Rights Reserved.</p>
+                </blockquote>
+            </div>
+        </footer>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        // Add a class when the user scrolls down
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { // Adjust scroll distance as needed
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

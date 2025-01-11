@@ -1,0 +1,130 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    font-size: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: rgb(86, 106, 93);
+    color: aliceblue;
+    border-radius: 1em;
+    transition: ease-in-out 150ms;
+    border-color: none;
+}
+
+button:hover {
+    /* font-size: 1.3em; */
+    /* border-radius: 0em; */
+    border-color: rgb(138, 207, 160);
+    background-color: aliceblue;
+    color: rgb(77, 96, 83);
+    box-shadow: 0em 0.5em .5em -0.3em rgb(13, 192, 94);
+    transform: translateY(-0.3em);
+}
+
+button:active {
+    font-size: 1em;
+    background-color: rgb(206, 206, 206);
+}
+
+#logo {
+    margin-right: 9em;
+    height: 5em;
+    width: 5em;
+}
+
+header {
+    background-color: rgb(215, 215, 223);
+    border-radius: 20px;
+    padding: 24px;
+    transition: ease-in-out 500ms;
+    text-align: center;
+    margin: 1em 8em 2em 8em;
+}
+
+header:hover {
+    font-size: 1em;
+    background-color: rgb(163, 163, 239);
+    color: rgb(231, 231, 245);
+    margin-left: 3em;
+    margin-right: 3em;
+    border-radius: 1em 0 1em 0;
+}
+
+nav {
+    background-color: rgb(159, 199, 211);
+    border-radius: 2em;
+    padding: 1em;
+    transition: ease-in-out 500ms;
+    text-align: center;
+    margin: 1em 8em 2em 8em;
+}
+
+nav:hover {
+    background-color: rgb(172, 159, 211);
+    border-radius: 0 20% 0 20%;
+    margin: 1em 8em 2em 8em;
+}
+
+
+main {
+    text-align: center;
+    background-color: rgb(211, 192, 159);
+    border-radius: 20px;
+    padding: 24px;
+    transition: ease-in-out 500ms;
+    margin: 1em 8em 2em 8em;
+}
+
+main:hover {
+    background-color: rgb(172, 159, 211);
+    border-radius: 0 2em 0 2em;
+    margin-right: 3em;
+}
+
+main a {
+    text-decoration: none;
+    font-size: 1em;
+}
+
+main a:hover {
+    font-size: 1.3em;
+}
+
+main a:active {
+    font-size: 1em;
+    background-color: black;
+}
+
+
+footer {
+    background-color: rgb(149, 178, 201);
+    border-radius: 1em;
+    padding: 1em;
+    transition: ease-in-out 500ms;
+}
+
+footer:hover {
+    background-color: rgb(164, 168, 164);
+    border-radius: 3em 0 3em 0;
+    margin-left: 0em;
+}
+
+footer a {
+    color: whitesmoke;
+    font-size: 2em;
+}
+
+footer a:hover {
+    font-size: 2.3em;
+}
+
+footer a:active {
+    background-color: black;
+}
+
+table {
+    margin: auto;
+    display: inline;
+}
