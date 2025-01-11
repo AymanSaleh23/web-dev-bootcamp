@@ -23,7 +23,7 @@ function collectotaMCUData() {
     let max = Math.floor(Math.random() * 18) + 1;
     for (let i = 0; i < max; i++) {
         let deviceObj = {
-            img: `file:///M:/Train/web-dev-bootcamp/JS-app/IOTA_refactor-dynamic/ota-location-imgs/location-${Math.floor(Math.random() * max) + 1}.jpg`,
+            img: `./ota-location-imgs/location-${Math.floor(Math.random() * max) + 1}.jpg`,
             title: `Device @  ${mcu_location[i]} by ${hrefs[i]} `,
             paragraph: `This is a dummy data for IOT Device '${i + 1}' to enable remote monitoring features.`,
             anchorHref: `https://www.google.com/${scearchQuiry}${hrefs[i]}`,

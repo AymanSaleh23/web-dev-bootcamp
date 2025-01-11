@@ -17,7 +17,7 @@ function collectDevicesData() {
     let max = Math.floor(Math.random() * 18) + 1;
     for (let i = 0; i < max; i++) {
         let deviceObj = {
-            img: `file:///M:/Train/web-dev-bootcamp/JS-app/IOTA_refactor-dynamic/iot-deveice-imgs/device-${Math.floor(Math.random() * max) + 1}.jpg`,
+            img: `./iot-deveice-imgs/device-${Math.floor(Math.random() * max) + 1}.jpg`,
             title: `Device @ Location ${i + 1} by ${hrefs[i]} `,
             paragraph: `This is a dummy data for IOT Device '${i + 1}' to enable remote monitoring features.`,
             anchorHref: `https://www.google.com/${scearchQuiry}${hrefs[i]}`,
