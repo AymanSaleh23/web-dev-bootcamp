@@ -44,8 +44,7 @@ function resetGame() {
     console.log('Reset Game')
     p1 = 0
     p2 = 0
-    roundMaxBtn.value = 5
-    roundMax = roundMaxBtn.value
+    roundMax = roundMaxBtn.value;
     isGameOver = false;
     add_p1.disabled = false;
     add_p2.disabled = false;
@@ -85,6 +84,7 @@ add_p2.addEventListener(('click'), (evt) => {
 
 roundMaxBtn.addEventListener(('change'), (evt) => {
     roundMax = roundMaxBtn.value;
+    resetGame();
     console.log(roundMax)
 })
 
