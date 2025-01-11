@@ -11,24 +11,30 @@ let hrefs = ['Michael Jackson', 'Johnny Depp', 'Rowan Atkinson', 'Jackie Chan', 
     'Selena Gomez', 'Keanu Reeves', 'Scarlett Johansson', 'Robert Downey Jr.', 'Kim Kardashian',
     'Zendaya', 'Will Smith', 'Emma Watson', 'Justin Bieber', 'Margot Robbie'
 ]
-let devices = [];
+let mcu_location = [
+    'Tokyo, Japan', 'Cape Town, South Africa', 'Sydney, Australia', 'Reykjavik, Iceland', 'Machu Picchu, Peru',
+    'Paris, France', 'Cairo, Egypt', 'Banff National Park, Canada', 'Santorini, Greece', 'Dubai, United Arab Emirates',
+    'Mount Everest, Nepal', 'New York City, USA', 'Venice, Italy', 'Bora Bora, French Polynesia', 'Rio de Janeiro, Brazil',
+    'Marrakech, Morocco', 'Amsterdam, Netherlands', 'Petra, Jordan', 'Kyoto, Japan', 'Istanbul, Turkey'
+]
+let otaMCU = [];
 
-function collectDevicesData() {
+function collectotaMCUData() {
     let max = Math.floor(Math.random() * 18) + 1;
     for (let i = 0; i < max; i++) {
         let deviceObj = {
-            img: `file:///M:/Train/web-dev-bootcamp/JS-app/IOTA_refactor-dynamic/iot-deveice-imgs/device-${Math.floor(Math.random() * max) + 1}.jpg`,
-            title: `Device @ Location ${i + 1} by ${hrefs[i]} `,
+            img: `file:///M:/Train/web-dev-bootcamp/JS-app/IOTA_refactor-dynamic/ota-location-imgs/location-${Math.floor(Math.random() * max) + 1}.jpg`,
+            title: `Device @  ${mcu_location[i]} by ${hrefs[i]} `,
             paragraph: `This is a dummy data for IOT Device '${i + 1}' to enable remote monitoring features.`,
             anchorHref: `https://www.google.com/${scearchQuiry}${hrefs[i]}`,
             anchorText: `Show Details`
         };
-        devices.push(deviceObj);
+        otaMCU.push(deviceObj);
     }
 }
 
 function ViewDeviece() {
-    for (let device of devices) {
+    for (let device of otaMCU) {
         let cardElement = document.createElement('div')
         cardElement.setAttribute('class', 'card m-2 ')
         cardElement.setAttribute('style', 'height: 30rem;width: 20rem')
@@ -73,5 +79,5 @@ function ViewDeviece() {
 
 }
 
-collectDevicesData()
+collectotaMCUData()
 ViewDeviece()

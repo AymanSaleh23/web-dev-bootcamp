@@ -1,0 +1,22 @@
+.navbar {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: #515d6a !important;
+    /* Dark background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #7071ad !important;
+    /* Initial font color */
+    transition: color 0.3s ease;
+}
+
+.navbar.scrolled .nav-link,
+.navbar.scrolled .navbar-brand {
+    color: #dedae4 !important;
+    /* Font color on scroll */
+}
