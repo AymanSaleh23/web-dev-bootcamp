@@ -1,7 +1,7 @@
 let wallpaperDiv = document.createElement('div');
 wallpaperDiv.setAttribute('class', 'container col text-center');
 
-let wallpaper_src = 'file:///M:/Train/web-dev-bootcamp/JS-app/IOTA_refactor-dynamic/logo/logo.PNG';
+let wallpaper_src = '/logo/logo.PNG';
 let wallpaper = document.createElement('img');
 wallpaper.setAttribute('src', wallpaper_src)
 wallpaper.setAttribute('alt', 'No Wallpaper Available!')
