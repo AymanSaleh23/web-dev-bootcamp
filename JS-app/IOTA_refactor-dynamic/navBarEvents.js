@@ -7,5 +7,5 @@ window.addEventListener('scroll', function () {
         navbar.classList.remove('scrolled');
     }
 });
-
-document.querySelector('#logo').setAttribute('src', './logo/icon.PNG')
+let icon_src = './logo/icon.PNG';
+document.querySelector('#logo').setAttribute('src', icon_src)
