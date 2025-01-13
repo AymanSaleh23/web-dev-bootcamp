@@ -8,4 +8,4 @@ window.addEventListener('scroll', function () {
     }
 });
 
-document.querySelector('#logo').setAttribute('src', 'file:///M:/Train/web-dev-bootcamp/JS-app/IOTA_refactor-dynamic/logo/icon.PNG')
+document.querySelector('#logo').setAttribute('src', './logo/icon.PNG')
