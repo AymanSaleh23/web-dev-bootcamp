@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #options,
+        .players {
+            font-size: medium;
+        }
+
+        .players {
+            font-weight: 700;
+            border-radius: 1rem
+        }
+    </style>
     <title>Ping Pong Counter</title>
 </head>
 
@@ -13,47 +24,46 @@
 
     <header>
         <div class="container">
-            <h1 class="display-4 d-flex justify-content-center m-3">
+            <h1 class="display-4 d-flex justify-content-center m-3 py-2">
                 Welcome To Ping Pong Player Points Recorder
             </h1>
         </div>
 
     </header>
     <main>
-        <div class="container text-center border shadow rounded p-5 " style="width: 65%;" id="mainContainer">
+        <div class="container text-center border shadow rounded p-1  " style="width: 40%;" id="mainContainer">
 
             <img src="img.jpg" alt="" class="justify-content-center"
-                style=" width: 60%; height: 30rem; object-fit: cover; border-radius: 4rem; margin: 2rem;">
+                style=" width: 30%; height: 9rem; object-fit: cover; border-radius: 1rem; margin: 1rem;">
 
-            <h2 class="display-6">Ping Pong score keeper</h2>
+            <h2 class="m-1">Ping Pong score keeper</h2>
 
-            <p id="score" class="display-4"> <b><span id="player_1_score"></span> to <span
-                        id="player_2_score"></span></b></p>
+            <p class="m-1" id="score" style="font-size: 3rem; font-family: 'Gill Sans', 'Gill Sans MT', Calibri;">
+                <b><span id="player_1_score"></span> to <span id="player_2_score"></span></b>
+            </p>
 
-            <h5 id="usingInstructions"> Use buttons to update players scores</h5>
+            <h5 class="m-0 p-0" id="usingInstructions"> Use buttons to update players scores</h5>
 
-            <div class="container">
-                <b class="display-4">Round Score</b>
+            <div class="container m-1">
+                <b style=" font-size: 2rem; font-family: 'Gill Sans' , 'Gill Sans MT' , Calibri;">Round Score </b>
 
-                <select name="roundScore" id="roundScore" class="display-5 m-5 text-center "
-                    style="border-radius: 2rem; width: 10%; font-size: 3rem;">
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
+                <select name="roundScore" id="roundScore" class="m-2 text-center"
+                    style="border-radius: .3rem; width: 30%; font-size: 2rem;">
+                    <option id="options" value="5">5</option>
+                    <option id="options" value="6">6</option>
+                    <option id="options" value="7">7</option>
+                    <option id="options" value="8">8</option>
                 </select>
             </div>
 
 
-            <div class="btn-group justify-content-center" role="group" style="width: 75%; height: 4rem;">
-                <button id="p_1_add" type="button" class="btn btn-success"
-                    style="font-size: 2rem; font-weight:700;border-radius: 1rem">
+            <div class="btn-group justify-content-center" role="group" style="width: 75%; height: 3rem;">
+                <button id="p_1_add" type="button" class="players btn btn-success">
                     +1 player 1</button>
-                <button id="p_2_add" type="button" class="btn btn-primary"
-                    style="font-size: 2rem; font-weight:700;border-radius: 1rem">
+                <button id="p_2_add" type="button" class="players btn btn-primary">
+
                     +1 player 2</button>
-                <button id="resetBtn" type="button" class="btn btn-danger"
-                    style="font-size: 2rem; font-weight:700;border-radius: 1rem">
+                <button id="resetBtn" type="button" class="players btn btn-danger">
                     Reset</button>
             </div>
 
