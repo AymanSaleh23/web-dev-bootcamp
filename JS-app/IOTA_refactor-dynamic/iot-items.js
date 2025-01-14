@@ -16,12 +16,13 @@ let devices = [];
 function collectDevicesData() {
     let max = Math.floor(Math.random() * 18) + 1;
     for (let i = 0; i < max; i++) {
+        let titleOfCelebIndex = Math.floor(Math.random() * 18);
         let deviceObj = {
-            img: `./iot-deveice-imgs/device-${Math.floor(Math.random() * max) + 1}.jpg`,
-            title: `Device @ Location ${i + 1} by ${hrefs[i]} `,
+            img: `./iot-deveice-imgs/device-${(Math.floor(Math.random() * 18)) + 1}.jpg`,
+            title: `Device @ Location ${i + 1} by ${hrefs[titleOfCelebIndex]} `,
             paragraph: `This is a dummy data for IOT Device '${i + 1}' to enable remote monitoring features.`,
-            anchorHref: `https://www.google.com/${scearchQuiry}${hrefs[i]}`,
-            anchorText: `Show Details`
+            anchorHref: `https://www.google.com/${scearchQuiry}${hrefs[titleOfCelebIndex]}`,
+            anchorText: `Show Details : ${hrefs[titleOfCelebIndex]}`
         };
         devices.push(deviceObj);
     }

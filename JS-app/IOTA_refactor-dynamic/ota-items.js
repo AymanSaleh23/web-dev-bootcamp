@@ -12,9 +12,9 @@ let hrefs = ['Michael Jackson', 'Johnny Depp', 'Rowan Atkinson', 'Jackie Chan', 
     'Zendaya', 'Will Smith', 'Emma Watson', 'Justin Bieber', 'Margot Robbie'
 ]
 let mcu_location = [
-    'Tokyo, Japan', 'Cape Town, South Africa', 'Sydney, Australia', 'Reykjavik, Iceland', 'Machu Picchu, Peru',
-    'Paris, France', 'Cairo, Egypt', 'Banff National Park, Canada', 'Santorini, Greece', 'Dubai, United Arab Emirates',
-    'Mount Everest, Nepal', 'New York City, USA', 'Venice, Italy', 'Bora Bora, French Polynesia', 'Rio de Janeiro, Brazil',
+    'Tokyo, Japan', 'Cape Town, S. Africa', 'Sydney, Australia', 'Reykjavik, Iceland', 'Machu Picchu, Peru',
+    'Paris, France', 'Cairo, Egypt', 'Banff N.P., Canada', 'Santorini, Greece', 'Dubai, UAE',
+    'Mount Everest, Nepal', 'NYC, USA', 'Venice, Italy', 'Bora Bora, French Polynesia', 'Rio de Janeiro, Brazil',
     'Marrakech, Morocco', 'Amsterdam, Netherlands', 'Petra, Jordan', 'Kyoto, Japan', 'Istanbul, Turkey'
 ]
 let otaMCU = [];
@@ -22,12 +22,13 @@ let otaMCU = [];
 function collectotaMCUData() {
     let max = Math.floor(Math.random() * 18) + 1;
     for (let i = 0; i < max; i++) {
+        let titleOfLocationIndex = (Math.floor(Math.random() * 18));
         let deviceObj = {
-            img: `./ota-location-imgs/location-${Math.floor(Math.random() * max) + 1}.jpg`,
-            title: `Device @  ${mcu_location[i]} by ${hrefs[i]} `,
+            img: `./ota-location-imgs/location-${i + 1}.jpg`,
+            title: `Device @  ${mcu_location[i]} by ${hrefs[titleOfLocationIndex]} `,
             paragraph: `This is a dummy data for IOT Device '${i + 1}' to enable remote monitoring features.`,
-            anchorHref: `https://www.google.com/${scearchQuiry}${mcu_location[i]}`,
-            anchorText: `Show Details`
+            anchorHref: `https://www.google.com/${scearchQuiry}${mcu_location[titleOfLocationIndex]}`,
+            anchorText: `Show Details: ${mcu_location[titleOfLocationIndex]}`
         };
         otaMCU.push(deviceObj);
     }
