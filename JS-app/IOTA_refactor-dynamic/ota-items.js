@@ -26,7 +26,7 @@ function collectotaMCUData() {
             img: `./ota-location-imgs/location-${Math.floor(Math.random() * max) + 1}.jpg`,
             title: `Device @  ${mcu_location[i]} by ${hrefs[i]} `,
             paragraph: `This is a dummy data for IOT Device '${i + 1}' to enable remote monitoring features.`,
-            anchorHref: `https://www.google.com/${scearchQuiry}${hrefs[i]}`,
+            anchorHref: `https://www.google.com/${scearchQuiry}${mcu_location[i]}`,
             anchorText: `Show Details`
         };
         otaMCU.push(deviceObj);
