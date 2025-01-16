@@ -1,3 +1,4 @@
 [DONE]	Simple Responsive Form
 [DONE]	Simple Responsive Blogography
-Refactor IOTA Site by Responsive one
+[DONE]	Refactor IOTA Site by Responsive one
+Make Requests using JS
