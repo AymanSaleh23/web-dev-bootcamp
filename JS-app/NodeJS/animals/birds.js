@@ -1,0 +1,1 @@
+module.exports = { BIRDS: ['parrots', 'eagles', 'owls'] }

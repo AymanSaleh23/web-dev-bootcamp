@@ -1,0 +1,1 @@
+module.exports = { RABBITS: ['nony', 'lopsy', 'anty', 'rasy'] }

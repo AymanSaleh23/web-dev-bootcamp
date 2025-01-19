@@ -1,0 +1,1 @@
+module.exports = { CATS: ['possy', 'tassy', 'nancy', 'lucy'] }

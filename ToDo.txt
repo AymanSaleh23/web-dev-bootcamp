@@ -1,4 +1,5 @@
 [DONE]	Simple Responsive Form
 [DONE]	Simple Responsive Blogography
 [DONE]	Refactor IOTA Site by Responsive one
-Make Requests using JS
+[DONE]	Make Requests using JS
+Snake game with JS

@@ -1,0 +1,1 @@
+module.exports = { LIONS: ['lolo', 'tibi', 'nani', 'esma'] }

@@ -1,0 +1,1 @@
+module.exports = { WOLVES: ['andy', 'odirs', 'oranis', 'loni'] }

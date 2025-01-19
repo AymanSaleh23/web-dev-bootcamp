@@ -1,0 +1,1 @@
+module.exports = { DOGS: ['roxy', 'puppy', 'greaman', 'husky'] }
