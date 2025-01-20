@@ -1,7 +1,8 @@
 const express = require('express')
 const anima = require('../animals')
 app = express()
-console.dir(app)
+app.set('view engine', 'ejs')
+// console.dir(app)
 
 // app.use((req, res) => {
 //     console.log("A new Request!")
@@ -53,6 +54,22 @@ app.get('/homepage', (req, res) => {
         console.log(req.query)
         console.log(queryStr)
     }
+})
+app.get('/random/:twos', (req, res) => {
+    const asingTxt = 'theTowsPattern';
+    const rn = Math.floor(Math.random() * 10 + 2)
+    res.render('anotherTemp', { r: rn, rn, asingTxt })
+})
+app.get('/random/', (req, res) => {
+    const asingTxt = 'theMainRand';
+    const rn = Math.floor(Math.random() * 10 + 2)
+    res.render('anotherTemp', { r: rn, rn, asingTxt })
+})
+
+const path = require('path')
+app.set('views', path.join(__dirname, '/views'))
+app.get('/', (req, res) => {
+    res.render('root')
 })
 
 app.listen(4000, () => {
