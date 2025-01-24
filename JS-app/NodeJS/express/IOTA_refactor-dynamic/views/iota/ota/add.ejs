@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FRU</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../styles/navbarStyles.css">
+</head>
+
+<body>
+    <%- include('../navbar'); %>
+    <header>
+        <div class="container d-flex justify-content-center align-items-center mb-4 ">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="container col-10 row text-center">
+                    <div class="col-12">
+                        <h1 class="display-4 mb-5 mt-3">Firmware Remote Updater (FRU)</h1>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-justify"> Flash Over-the-Air (FOTA) Technology
+                            Our FOTA service revolutionizes how you update your devices. Say goodbye to manual updates
+                            and
+                            lengthy
+                            processes. With just a few clicks, you can deploy firmware upgrades remotely, ensuring your
+                            devices are
+                            always running the latest software. This not only saves time but also enhances security and
+                            performance.
+                            Explore our FOTA tools today to keep your technology at its best without any hassle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <main>
+        <div class="container border rounded bg-light shadow-lg d-flex justify-content-center align-items-center pt-5">
+            <form action="">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-10 row justify-content-center align-items-center">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="row ">
+                                    <div class="col-sm-12 col-md-4 text-center">
+                                        <label for="controller" id="IDmcu">MCU unique ID</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8">
+                                        <input type="text" class="form-control" name="cnt" id="controller"
+                                            placeholder="controller ID" required min="10" max="1000">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4 text-center">
+                                        <label for="authentication-key" id="lbl-auth">MCU Authentication key</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8">
+                                        <input type="password" class="form-control" name="auth-key"
+                                            id="authentication-key" placeholder="Authentication" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-4">
+                                    <div class="form-group text-center">
+                                        <label for="file_t">File Type</label>
+                                        <select class="form-control form-control text-center" id="file_t">
+                                            <option>.BIN</option>
+                                            <option>.HEX</option>
+                                            <option>.ELF</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="up_date" id="lbl_up_date">Update Firm Date</label>
+                                        <input type="date" class="form-control" name="date2up" id="up_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="new_firm">New Firmware</label>
+                                        <input type="file" class="form-control-file" name="file" id="new_firm"
+                                            placeholder="choose the new Firmware" accept=".bin,.elf,.hex" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <button id="up_sched" class="form-control btn-success">Sched Update</button>
+                                        <label for="up_sched" id="lbl_update_note" class="form-text text-muted">Update
+                                            Firmware will be schedualled to the date you've selected</label>
+                                    </div>
+                                    <div class="col">
+                                        <button class="form-control btn-warning" id="up_now"> Update Now</button>
+                                        <label for="up_now" id="lbl_update_note" class="form-text text-muted">Update
+                                            Firmware will be flashed as soon as it's online</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <%- include('../footer'); %>
+    <script src="../../js/navBarEvents.js"></script>
+</body>
+
+</html>
