@@ -76,7 +76,7 @@
                     class="container d-flex flex-row flex-wrap align-items-center justify-content-center align-content-center">
 
                     <% for (let devs of iotDevs){ %>
-                        <div class="card m-2 col-lg-3 col-md-4 col-sm-12">
+                        <div class="card m-2 col-lg-3 col-md-5 col-sm-12">
                             <img src=<%=devs.img %> style="height: 15rem; object-fit: cover;"
                             class="card-img-top" alt=<%=devs.img %>>
                                 <div class="card-body">
@@ -84,11 +84,24 @@
                                         <%= devs.owner %>'s Device
                                     </h5>
                                     <p class="card-text">This IOT Device is located in <strong>
-                                            <%= devs.devLoc %>
+                                            <%= devs.location %>
                                         </strong>, have this
                                         serial No. <br><span style="font-size: .9rem;">
-                                            <%= devs.id %>
-                                        </span>
+                                            <strong>
+                                                <%= devs.id %>
+                                            </strong>
+                                        </span><br>
+                                        <strong>
+                                            <% if (!devs.expState) { %>
+                                                <span class="display-4"
+                                                    style="font-size: 1.3rem; color: green; font-weight: bolder;">
+                                                    Active</span>
+                                                <% } else { %>
+                                                    <span class="display-4" style="font-size: 1.3rem; color: grey;">
+                                                        In-Active</span>
+                                                    <%} %>
+                                        </strong>
+
                                     </p>
 
                                     <div class="row">

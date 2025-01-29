@@ -75,7 +75,8 @@
                                     <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Location</label>
                                     </div>
                                     <div class="col"><input type="text" class="form-control" required id="dev_loc"
-                                            name="dev_loc" placeholder="location of Device" value="<%=founded.devLoc%>">
+                                            name="dev_loc" placeholder="location of Device"
+                                            value="<%=founded.location%>">
                                     </div>
                                 </div>
                             </div>
@@ -88,13 +89,14 @@
                                     </div>
                                     <div class=" col text-center">
                                         <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp"
-                                            aria-valuemax="1" aria-valuemin="0" <%if (founded.exp==='on' ) {%>
-                                        checked>
-                                        <%}%>
+                                            aria-valuemax="1" aria-valuemin="0" <%if (founded.exp === true ) {%>
+                                        checked
+                                        <%}%>>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="col">
                                 <div class="form-group ">
@@ -114,26 +116,28 @@
                                     <div class="row"><label for="dev_dataTy">Data holder</label></div>
                                     <div class="row"><select name="dev_dataTy" id="dev_dataTy" class="form-control"
                                             required>
-                                            <option value="int" name="n_t" <% if (founded.dataType==='int' ) {%>
-                                                selected
-                                                <%} %>
-                                                    >int
-                                            </option>
-                                            <option value="float" name="n_t" <% if (founded.dataType==='float' ) {%>
-                                                selected
-                                                <%} %>
-                                                    >float
-                                            </option>
-                                            <option value="string" name="n_t" <% if (founded.dataType==='string' ){%>
-                                                selected
-                                                <%}%>>String
-                                            </option>
-                                            <option value="boolean" name="n_t" <% if (founded.dataType==='boolean' ){%>
+                                            <option value="0" name="n_t" <% if (founded.dataType==='boolean' ){%>
                                                 selected
                                                 <%}%>
                                                     >boolean
                                             </option>
-                                        </select></div>
+                                            <option value="1" name="n_t" <% if (founded.dataType==='int' ) {%>
+                                                selected
+                                                <%} %>
+                                                    >int
+                                            </option>
+                                            <option value="2" name="n_t" <% if (founded.dataType==='float' ) {%>
+                                                selected
+                                                <%} %>
+                                                    >float
+                                            </option>
+                                            <option value="3" name="n_t" <% if (founded.dataType==='string' ){%>
+                                                selected
+                                                <%}%>>String
+                                            </option>
+
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -147,6 +151,7 @@
                             </div>
                         </div>
                     </div>
+
             </div>
 
             <div class="col-sm-12">
