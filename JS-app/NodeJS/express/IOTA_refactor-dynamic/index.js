@@ -1,18 +1,3 @@
-let owners = ['Michael-Jackson', 'Johnny-Depp', 'Rowan-Atkinson', 'Jackie-Chan', 'Robert Downey Jr.',
-    'Will Smith', 'Morgan Freeman', 'Megan Fox', 'Beyoncé', 'Leonardo DiCaprio',
-    'Taylor Swift', 'Brad Pitt', 'Angelina Jolie', 'Chris Hemsworth', 'Rihanna',
-    'Tom Cruise', 'Jennifer Lawrence', 'Dwayne "The Rock" Johnson',
-    'Selena Gomez', 'Keanu Reeves', 'Scarlett Johansson', 'Robert Downey Jr.', 'Kim Kardashian',
-    'Zendaya', 'Will Smith', 'Emma Watson', 'Justin Bieber', 'Margot Robbie'
-]
-
-let devLocation = [
-    'Tokyo, Japan', 'Cape Town, S. Africa', 'Sydney, Australia', 'Reykjavik, Iceland', 'Machu Picchu, Peru',
-    'Paris, France', 'Cairo, Egypt', 'Banff N.P., Canada', 'Santorini, Greece', 'Dubai, UAE',
-    'Mount Everest, Nepal', 'NYC, USA', 'Venice, Italy', 'Bora Bora, French Polynesia', 'Rio de Janeiro, Brazil',
-    'Marrakech, Morocco', 'Amsterdam, Netherlands', 'Petra, Jordan', 'Kyoto, Japan', 'Istanbul, Turkey'
-]
-
 const express = require('express');
 const { v4: uuid } = require('uuid'); //For generating ID's
 const methodOverride = require('method-override')
@@ -35,15 +20,50 @@ const app = express()
 
 const deviceSchema = new mongoose.Schema(
     {
-        id: String,
-        owner: String,
-        dataType: Number,
-        exp: Boolean,
-        expData: Date,
-        expState: Boolean,
-        location: String, // geographical Location in Futuer (longtude, latitude)
-        img: String,
-        about: String
+        id: {
+            type: String,
+            required: true,
+            immutable: true,
+            dafault: uuid(),
+            unique: true
+        },
+        name: {
+            type: String,
+            required: true,
+            immutable: true
+        },
+        owner: {
+            type: String,
+            required: true
+        },
+        dataType: {
+            type: Number,
+            required: true
+        },
+        exp: {
+            type: Boolean,
+            required: true,
+            default: false
+        },
+        expData: {
+            type: Date
+        },
+        expState: {
+            type: Boolean,
+            required: true,
+            default: false
+        },
+        location: {
+            type: String
+        }, // geographical Location in Futuer (longtude, latitude)
+        img: {
+            type: String,
+            default: 'https://raw.githubusercontent.com/AymanSaleh23/web-dev-bootcamp/refs/heads/main/JS-app/NodeJS/express/IOTA_refactor-dynamic/public/imgs/logo/logo.PNG'
+        },
+        about: {
+            type: String,
+            default: '<Dafault> No About inserted!'
+        }
     }
 );
 const device = mongoose.model('Device', deviceSchema);
@@ -73,6 +93,7 @@ app.get('/iota/iot', (req, res) => {
             console.log('Found', data.length, ' records');
 
             for (let record of data) {
+                record.expData = new Date(record.expData)
                 iotDevs.push(record);
             }
             for (let dev of iotDevs) {
@@ -114,23 +135,24 @@ app.get('/iota/iot/modify/:devID', (req, res) => {
     const devID = req.params.devID
     console.log(devID)
     const founded = iotDevs.find(dev => dev.id === devID);
-    console.log(founded.id)
+    console.log(`The IOT dev will modified`, founded);
     res.render('iota/iot/modify', { founded });
 });
 
 app.patch('/iota/iot/modify/:devId', (req, res) => {
-    const { dev_name, dev_id, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
+    const { dev_owner, dev_name, dev_id, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
     let { cb_exp } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
 
     const q = device.updateOne({ id: dev_id }, {
-        owner: dev_name,
+        owner: dev_owner,
+        name: dev_name,
         location: dev_loc,
         exp: cb_exp,
-        expDate: DateToExp,
+        expData: DateToExp,
         dataType: dev_dataTy,
         about: devAbout
-    }, { new: true })
+    }, { new: true, runValidators: true })
         .then((q) => {
             console.log(`${q}`)
         })
@@ -145,7 +167,7 @@ app.get('/iota/iot/add', (req, res) => {
 })
 
 app.post('/iota/iot/add', (req, res) => {
-    const { dev_name, dev_id, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
+    const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
     let { cb_exp } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
 
@@ -153,7 +175,7 @@ app.post('/iota/iot/add', (req, res) => {
         console.log("Unavalable Date for expire.")
     }
     else {
-        device.create({ owner: dev_name, id: dev_id, location: dev_loc, exp: cb_exp, expData: DateToExp, expState: false, about: devAbout, dataType: dev_dataTy, img: `/imgs/iot-deveice-imgs/device-1${Math.floor(Math.random() * 9)}.jpg` })
+        device.create({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: false, about: devAbout, dataType: dev_dataTy })
             .then((data) => {
                 console.log(`Added device ${data}`)
             })
@@ -162,7 +184,7 @@ app.post('/iota/iot/add', (req, res) => {
             })
     }
 
-    res.render('iota/iot/show', { iotDevs });
+    res.redirect('/iota/iot/');
 })
 
 app.get('/iota/iot/details/:id', (req, res) => {
