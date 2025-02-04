@@ -3,8 +3,7 @@
 [DONE]	Refactor IOTA Site by Responsive one
 [DONE]	Make Requests using JS
 
-use .save in mongoose instead of .insertOne
-use a dynamic way to preset the Selected attribute in <select> and its own <option> {list of options in js and loop over it in templet and put selected if matches}
-use put instead of patch in modifiy elements
-show with filter based on any category like [active, incactive]
+[DONE] use .save in mongoose instead of .insertOne
+[DONE] use a dynamic way to preset the Selected attribute in <select> and its own <option> {list of options in js and loop over it in templet and put selected if matches}
+[DONE] show with filter based on any category like [active, incactive]
 Snake game with JS

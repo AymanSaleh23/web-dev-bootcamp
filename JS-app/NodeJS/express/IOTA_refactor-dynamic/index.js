@@ -167,7 +167,7 @@ app.get('/iota/iot/add', (req, res) => {
     res.render('iota/iot/add', { typeOptions, dateNow });
 })
 
-app.post('/iota/iot/add', (req, res) => {
+app.post('/iota/iot/add', async(req, res) => {
     const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
     let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
@@ -177,13 +177,9 @@ app.post('/iota/iot/add', (req, res) => {
         console.log("Unavalable Date for expire.")
     }
     else {
-        device.create({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy })
-            .then((data) => {
-                console.log(`Added device ${data}`)
-            })
-            .catch((e) => {
-                console.log(`Unable to add device ${e}`)
-            })
+        dev = new device({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy })
+        const data = await dev.save();
+        console.log(`Added device ${data}`)
     }
 
     res.redirect('/iota/iot/');
