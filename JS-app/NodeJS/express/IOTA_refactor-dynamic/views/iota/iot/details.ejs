@@ -16,7 +16,7 @@
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="container col-10 row text-center">
                         <div class="col-12">
-                            <h1 class="display-4 mb-5 mt-3">IOT add device</h1>
+                            <h1 class="display-4 mb-5 mt-3">IOT Device Details</h1>
                         </div>
                         <div class="col-12">
                             <p class="text-justify"> IoT Device Registration and Monitoring
@@ -64,14 +64,15 @@
                                     <%= dev.id %>
                                 </strong><br>
                                 Expire Feature:
-                                <% if (dev.exp===true ) { %>
-                                    <strong>
-                                        <%=dev.exp %>
-                                    </strong><br>
-                                    Expiration State:
-                                    <strong>
-                                        <%=dev.expState %>
-                                    </strong><br>
+
+                                <strong>
+                                    <%=dev.exp?"Expirable":"All Time" %>
+                                </strong><br>
+                                Expiration State:
+                                <strong class="<%=(dev.expState===false)?" text-success":"text-danger"%>">
+                                    <%= (dev.expState)?"Expired":"Available"%>
+                                </strong><br>
+                                <% if (dev.expState===false ) { %>
                                     Expire Date:<strong>
                                         <%= dev.expData %>
                                     </strong><br>
@@ -80,15 +81,16 @@
                                         <%}%>
                             </p>
                             <p> <i>
-                                    <textarea name="" id="" class="col" disabled rows="4"><%= dev.about %></textarea>
+                                    <textarea name="" id="" class=" col" disabled rows="4"><%= dev.about %></textarea>
 
-                                </i> </p>
+                                </i>
+                            </p>
 
                             <div class="d-flex justify-content-center align-items-center m-1">
                                 <form action="/iota/iot" method="get" class="m-1">
-                                    <button class="btn btn-primary m-1">back to all IOT devs</button>
-                                    <input type="text" name="dev_id" id="dev_id" hidden value="<%=dev.id %>">
-                                    <a href="/iota/iot/modify/<%=dev.id %>" class="btn btn-warning ">Modify</a>
+                                    <a class="btn btn-primary m-1" href="../">back to all IOT devs</button>
+                                        <input type="text" name="dev_id" id="dev_id" hidden value="<%=dev.id %>">
+                                        <a href="/iota/iot/modify/<%=dev.id %>" class="btn btn-warning ">Modify</a>
                                 </form>
 
                             </div>

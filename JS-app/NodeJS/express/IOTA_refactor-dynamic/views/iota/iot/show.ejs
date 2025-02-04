@@ -15,7 +15,7 @@
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="container col-10 row text-center">
                         <div class="col-12">
-                            <h1 class="display-4 mb-5 mt-3">IOT add device</h1>
+                            <h1 class="display-4 mb-5 mt-3">IOT <%= state %> Devices</h1>
                         </div>
                         <div class="col-12">
                             <p class="text-justify"> IoT Device Registration and Monitoring
@@ -51,39 +51,40 @@
         justify         : .justify-content-around
         align content   : .align-content-center
         -->
-            <div class="container d-felx flex-column align-items-center flex-nowrap mt-5">
+            <div class="container d-felx flex-row align-items-center mt-5">
 
-                <form method="GET" action="/iota/iot/add" class="form-group">
+                <form method="GET" action="/iota/iot/add"
+                    class="form-group container d-flex flex-row align-items-center justify-content-center align-content-center justify-content-around">
+                    <a href="/iota/iot/" class="m-1 btn btn-primary">All Devices</a>
+                    <a href="/iota/iot/active" class="m-1 btn btn-success">Active Devices</a>
+                    <a href="/iota/iot/inactive" class="m-1 btn btn-dark">In-Active Devices</a>
 
-                    <div class="container d-flex flex-row-reverse">
+                    <button href="" class="m-1 btn btn-success"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                            <path
+                                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg> Add IOT device
 
-                        <button href="" class="btn btn-success form-control w-50"> <svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus-square" viewBox="0 0 16 16">
-                                <path
-                                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                            </svg> Add IOT device
-
-                        </button>
-
-                    </div>
+                    </button>
 
                 </form>
+
 
                 <div
                     class="container d-flex flex-row flex-wrap align-items-center justify-content-center align-content-center">
 
                     <% for (let devs of iotDevs){ %>
-                        <div class="card m-2 col-lg-3 col-md-5 col-sm-12">
+                        <div
+                            class="card m-2 col-lg-3 col-md-5 col-sm-12 align-items-center justify-content-center align-content-center">
                             <img src=<%=devs.img %> style="width: 15rem; height:10rem; object-fit: cover;"
-                            class="card-img-top" alt=<%=devs.img %>>
+                            class="card-img-top " alt=<%=devs.img %>>
                                 <div class="card-body">
-                                    <h5 class="card-title">
+                                    <h5 class="card-title align-items-center justify-content-center align-content-center" style="height:2rem">
                                         <%= devs.owner %>'s Device
                                     </h5>
-                                    <p class="card-text">This IOT Device is located in <strong>
+                                    <p class="card-text align-items-center justify-content-center align-content-center" style="height:10rem">This IOT Device is located in <strong>
                                             <%= devs.location %>
                                         </strong>, have this
                                         serial No. <br><span style="font-size: .9rem;">
@@ -92,14 +93,14 @@
                                             </strong>
                                         </span><br>
                                         <strong>
-                                            <% if (!devs.expState) { %>
-                                                <span class="display-4"
-                                                    style="font-size: 1.3rem; color: green; font-weight: bolder;">
-                                                    Active</span>
-                                                <% } else { %>
-                                                    <span class="display-4" style="font-size: 1.3rem; color: grey;">
-                                                        In-Active</span>
-                                                    <%} %>
+                                            <% if (devs.expState) { %>
+                                                <span class="display-4" style="font-size: 1.3rem; color: grey;">
+                                                    In-Active</span>
+                                                <%}else { %>
+                                                    <span class="display-4"
+                                                        style="font-size: 1.3rem; color: green; font-weight: bolder;">
+                                                        Active</span>
+                                                    <% }%>
                                         </strong>
 
                                     </p>
@@ -109,7 +110,7 @@
                                         <!-- First form spans the entire width -->
                                         <div class="col m-1">
                                             <form action="/iota/iot/details/<%=devs.id %>" method="get"
-                                                class="d-flex justify-content-center align-items-center m-1">
+                                                class="d-flex justify-content-center align-items-center ">
                                                 <button class="btn btn-primary w-100">Detail</button>
                                             </form>
                                         </div>
@@ -118,7 +119,7 @@
 
                                         <div class="col m-1">
                                             <form action="/iota/iot/delete/<%=devs.id %>" method="post"
-                                                class="d-flex justify-content-center align-items-center m-1">
+                                                class="d-flex justify-content-center align-items-center">
                                                 <input type="text" name="dev_id" id="dev_id" hidden
                                                     value="<%=devs.id %>">
                                                 <button class="btn btn-danger">Terminate</button>

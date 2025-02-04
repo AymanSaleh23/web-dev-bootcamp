@@ -3,17 +3,15 @@ const { v4: uuid } = require('uuid'); //For generating ID's
 const methodOverride = require('method-override')
 const path = require('path');
 const mongoose = require('mongoose');
-const { Console } = require('console');
+const morgan = require('morgan')
+const typeOptions = ['long', 'boolean', 'int', 'float', 'string', 'double']
 
-let dataBaseInit = false;
 mongoose.connect('mongodb://localhost:27017/iotdevs')
     .then(() => {
         console.log('Connected to the DB well');
-        dataBaseInit = true;
     })
     .catch(() => {
         console.log('Connection Error');
-        dataBaseInit = false;
     });
 
 const app = express()
@@ -29,15 +27,15 @@ const deviceSchema = new mongoose.Schema(
         },
         name: {
             type: String,
-            required: true,
-            immutable: true
+            required: true
         },
         owner: {
             type: String,
             required: true
         },
         dataType: {
-            type: Number,
+            type: String,
+            enum: typeOptions,
             required: true
         },
         exp: {
@@ -68,45 +66,47 @@ const deviceSchema = new mongoose.Schema(
 );
 const device = mongoose.model('Device', deviceSchema);
 
+// Views folder and EJS setup:
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
+/* Some Middleware functions/Calls */
+app.use(express.static('public'));
 //To parse form data in POST request body:
 app.use(express.urlencoded({ extended: true }))
 // To 'fake' put/patch/delete requests:
 app.use(methodOverride('_method'))
 // To parse incoming JSON in POST request body:
 app.use(express.json())
-// Views folder and EJS setup:
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.use(express.static('public'));
-
-//{ id: "", owner: "", dataType: Number, exp: Boolean, expData: Date, expStatus: Boolean, location: "", img: "" , about: ""}
+//  Simple logger tool
+app.use(morgan('tiny'))
+app.use((req, res, next) => {
+    const reqDate = Date.now()
+    console.log(reqDate)
+    console.log(req.path)
+    req.requstDate = new Date(reqDate).toISOString()
+    next();
+})
 let iotDevs = [];
 
 app.get('/iota', (req, res) => {
     res.render('iota/iota');
 })
 
-app.get('/iota/iot', (req, res) => {
-    iotDevs = [];
-    device.find({})
-        .then((data) => {
-            console.log('Found', data.length, ' records');
-
-            for (let record of data) {
-                record.expData = new Date(record.expData)
-                iotDevs.push(record);
-            }
-            for (let dev of iotDevs) {
-                console.log('Elem')
-                console.log(dev.id)
-            }
-            console.log('To add to UI')
-            res.render('iota/iot/show', { iotDevs });
-        }).catch((error) => {
-            console.log('inCorrect addition');
-            console.log(error);
-            res.render('iota/iot/show');
-        })
+app.get('/iota/iot/active', async (req, res) => {
+    console.log('/iota/iot/active')
+    iotDevs = await device.find({ expState: false })
+    res.render('iota/iot/show', { iotDevs, state: "Active" });
+})
+app.get('/iota/iot/inactive', async (req, res) => {
+    console.log('/iota/iot/inactive')
+    iotDevs = await device.find({ expState: true })
+    res.render('iota/iot/show', { iotDevs, state: "In-Active" });
+})
+app.get('/iota/iot/', async (req, res) => {
+    console.log('/iota/iot/all')
+    iotDevs = await device.find({})
+    res.render('iota/iot/show', { iotDevs, state: "All" });
 })
 
 app.post('/iota/iot/delete/:devID', (req, res) => {
@@ -136,46 +136,48 @@ app.get('/iota/iot/modify/:devID', (req, res) => {
     console.log(devID)
     const founded = iotDevs.find(dev => dev.id === devID);
     console.log(`The IOT dev will modified`, founded);
-    res.render('iota/iot/modify', { founded });
+    dateNow = req.requstDate.split(':')[0].substring(0, 10)
+    res.render('iota/iot/modify', { founded, typeOptions, dateNow });
 });
 
-app.patch('/iota/iot/modify/:devId', (req, res) => {
+app.patch('/iota/iot/modify/:devId', async (req, res) => {
     const { dev_owner, dev_name, dev_id, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
-    let { cb_exp } = req.body
+    let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
-
-    const q = device.updateOne({ id: dev_id }, {
+    cb_en = (cb_en) ? (true) : (false);
+    console.log(`cb_en ${cb_en}`)
+    const q = await device.updateOne({ id: dev_id }, {
         owner: dev_owner,
         name: dev_name,
         location: dev_loc,
         exp: cb_exp,
         expData: DateToExp,
+        expState: cb_en,
         dataType: dev_dataTy,
         about: devAbout
     }, { new: true, runValidators: true })
-        .then((q) => {
-            console.log(`${q}`)
-        })
-        .catch((e) => {
-            console.log(`Error while modification, ${e}`)
-        })
+
     res.redirect('../');
 })
 
 app.get('/iota/iot/add', (req, res) => {
-    res.render('iota/iot/add');
+    console.log(req.requstDate);
+    dateNow = req.requstDate.split(':')[0].substring(0, 10)
+    console.log(dateNow);
+    res.render('iota/iot/add', { typeOptions, dateNow });
 })
 
 app.post('/iota/iot/add', (req, res) => {
     const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
-    let { cb_exp } = req.body
+    let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
+    cb_en = (cb_en) ? (true) : (false);
 
     if (cb_exp === true && DateToExp === '') {
         console.log("Unavalable Date for expire.")
     }
     else {
-        device.create({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: false, about: devAbout, dataType: dev_dataTy })
+        device.create({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy })
             .then((data) => {
                 console.log(`Added device ${data}`)
             })

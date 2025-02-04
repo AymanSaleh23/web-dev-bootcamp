@@ -46,7 +46,7 @@
                             <div class="form-group text-center">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 col-sm-12">
-                                        <label for="dev_name">Node Name</label>
+                                        <label for="dev_name">Device Name</label>
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" required id="dev_name" name="dev_name"
@@ -59,7 +59,8 @@
                         <div class="col-sm-12">
                             <div class="form-group text-center">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Node ID</label></div>
+                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Device ID</label>
+                                    </div>
                                     <div class="col">
                                         <input type="text" class="form-control" hidden id="dev_id" name="dev_id"
                                             placeholder="uniqueID" min="1000" max="1024" value="<%=founded.id%>">
@@ -72,7 +73,8 @@
                         <div class="col-sm-12">
                             <div class="form-group text-center">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_owner"> Node Owner</label>
+                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_owner"> Device
+                                            Owner</label>
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" hidden id="dev_owner" name="dev_owner"
@@ -86,7 +88,8 @@
                         <div class="col-sm-12">
                             <div class="form-group text-center">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Location</label>
+                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Device
+                                            Location</label>
                                     </div>
                                     <div class="col"><input type="text" class="form-control" required id="dev_loc"
                                             name="dev_loc" placeholder="location of Device"
@@ -99,11 +102,22 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col text-center">
-                                        <label for="cb_exp"> Allow Node Expire</label>
+                                        <label for="cb_exp"> Allow Device Expire</label>
                                     </div>
                                     <div class=" col text-center">
-                                        <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp"
-                                            aria-valuemax="1" aria-valuemin="0" <%if (founded.exp===true ) {%>
+                                        <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp" 
+                                        <%if (founded.exp===true ) {%>
+                                        checked
+                                        <%}%>>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <label for="cb_en"> Disable Device</label>
+                                    </div>
+                                    <div class=" col text-center">
+                                        <input type="checkbox" class="form-control" name="cb_en" id="cb_en" 
+                                        <%if (founded.expState===true ) {%>
                                         checked
                                         <%}%>>
                                     </div>
@@ -119,7 +133,7 @@
                                     </div>
                                     <div class="row">
                                         <input type="date" class="form-control" id="DateToExp" name="DateToExp"
-                                            min="2024-12-1" max="2024-12-25"
+                                            min=<%=dateNow%>
                                             value=<%=founded.expData.toISOString().split(':')[0].substring(0, 10) %> >
                                     </div>
                                 </div>
@@ -131,26 +145,13 @@
                                     <div class="row"><label for="dev_dataTy">Data holder</label></div>
                                     <div class="row"><select name="dev_dataTy" id="dev_dataTy" class="form-control"
                                             required>
-                                            <option value="0" name="n_t" <% if (founded.dataType==='boolean' ){%>
-                                                selected
-                                                <%}%>
-                                                    >boolean
-                                            </option>
-                                            <option value="1" name="n_t" <% if (founded.dataType==='int' ) {%>
-                                                selected
-                                                <%} %>
-                                                    >int
-                                            </option>
-                                            <option value="2" name="n_t" <% if (founded.dataType==='float' ) {%>
-                                                selected
-                                                <%} %>
-                                                    >float
-                                            </option>
-                                            <option value="3" name="n_t" <% if (founded.dataType==='string' ){%>
-                                                selected
-                                                <%}%>>String
-                                            </option>
-
+                                            <% for (let option of typeOptions) { %>
+                                                <option value=<%=option%> name="n_t" <% if (
+                                                        founded.dataType===option){%>
+                                                        selected<% } %>
+                                                            > <%=option%>
+                                                                <%}%>
+                                                </option>
                                         </select>
                                     </div>
                                 </div>
@@ -172,7 +173,9 @@
             <div class="col-sm-12">
                 <div class="form-group text-center">
                     <button class="btn btn-success">Verify Node</button>
+                    <a class="btn btn-warning" href="../">Cancel</a>
                 </div>
+
             </div>
 
             </form>

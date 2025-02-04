@@ -45,7 +45,7 @@
                             <div class="form-group text-center">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 col-sm-12">
-                                        <label for="dev_name">Node Name</label>
+                                        <label for="dev_name">Device Name</label>
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" required id="dev_name" name="dev_name"
@@ -59,7 +59,7 @@
                         <div class="col-sm-12">
                             <div class="form-group text-center">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Node Owner</label>
+                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Device Owner</label>
                                     </div>
                                     <div class="col"><input type="text" class="form-control" required id="dev_owner"
                                             name="dev_owner" placeholder="owner name">
@@ -70,7 +70,8 @@
                         <div class="col-sm-12">
                             <div class="form-group text-center">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Location</label>
+                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Device
+                                            Location</label>
                                     </div>
                                     <div class="col"><input type="text" class="form-control" required id="dev_loc"
                                             name="dev_loc" placeholder="location of Device"></div>
@@ -81,11 +82,18 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col text-center">
-                                        <label for="cb_exp"> Allow Node Expire</label>
+                                        <label for="cb_exp"> Allow Device Expire</label>
                                     </div>
                                     <div class=" col text-center">
-                                        <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp"
-                                            aria-valuemax=<%=true%> aria-valuemin=<%=false%>>
+                                        <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <label for="cb_en"> Starting Enable State</label>
+                                    </div>
+                                    <div class=" col text-center">
+                                        <input type="checkbox" class="form-control" name="cb_en" id="cb_en">
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +106,7 @@
                                     </div>
                                     <div class="row">
                                         <input type="date" class="form-control" id="DateToExp" name="DateToExp"
-                                            min="2024-12-1" max="2024-12-25">
+                                            min=<%=dateNow%> value=<%=dateNow%>>
                                     </div>
                                 </div>
                             </div>
@@ -109,10 +117,17 @@
                                     <div class="row"><label for="dev_dataTy">Data holder</label></div>
                                     <div class="row"><select name="dev_dataTy" id="dev_dataTy" class="form-control"
                                             required>
-                                            <option value="0" name="n_t">boolean</option>
-                                            <option value="1" name="n_t" selected>int</option>
-                                            <option value="2" name="n_t">float</option>
-                                            <option value="3" name="n_t">String</option>
+                                            <option value=<%=typeOptions[0]%> name="n_t" selected>
+                                                <%=typeOptions[0]%>
+                                            </option>
+                                            <% for (let option=1 ; option < typeOptions.length; option++){ %>
+                                                <option value=<%=typeOptions[option]%> name="n_t">
+                                                    <%=typeOptions[option]%>
+                                                </option>
+                                                <% }%>
+
+
+
                                         </select></div>
                                 </div>
                             </div>
@@ -131,6 +146,7 @@
             <div class="col-sm-12">
                 <div class="form-group text-center">
                     <button class="btn btn-success">Verify Node</button>
+                    <a href="." class="btn btn-warning">Cancel</a>
                 </div>
             </div>
 
