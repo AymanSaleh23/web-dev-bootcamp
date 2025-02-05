@@ -7,5 +7,10 @@ window.addEventListener('scroll', function () {
         navbar.classList.remove('scrolled');
     }
 });
-let icon_src = './logo/icon.PNG';
+let icon_src = '/imgs/logo/icon.PNG';
 document.querySelector('#logo').setAttribute('src', icon_src)
+
+document.head.insertAdjacentHTML(
+    'beforeend',
+    `<link rel="icon" type="image/x-icon" href="/imgs/logo/icon.png">`
+);

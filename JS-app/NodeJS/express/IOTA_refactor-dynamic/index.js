@@ -109,26 +109,24 @@ app.get('/iota/iot/', async (req, res) => {
     res.render('iota/iot/show', { iotDevs, state: "All" });
 })
 
-app.post('/iota/iot/delete/:devID', (req, res) => {
+app.post('/iota/iot/delete/:devID', async (req, res) => {
     const { dev_id } = req.body;
-    device.find({ id: dev_id })
-        .then((data) => {
-            console.log('Deleting');
-            console.log(`Device detected`);
-            console.log(data);
-            console.log(`Device will be deleted`);
-            const q = device.deleteOne({ id: dev_id })
-                .then(() => {
-                    console.log(q)
-                })
-                .catch((e) => {
-                    console.log(e)
-                })
-            res.redirect('../');
-        })
-        .catch((e) => {
-            console.log(`Error while deleting! ${e}`);
-        })
+    const data = await device.find({ id: dev_id })
+
+    console.log('Deleting');
+    console.log(`Device detected`);
+    console.log(data);
+    console.log(`Device will be deleted`);
+    const q = await device.deleteOne({ id: dev_id })
+    try {
+        console.log(q)
+    }
+    catch (e) {
+        console.log(e)
+        console.log(`Error while deleting! ${e}`);
+    }
+    console.log(`${req.path}`)
+    res.redirect(`../${req.path}`)
 })
 
 app.get('/iota/iot/modify/:devID', (req, res) => {
@@ -167,7 +165,7 @@ app.get('/iota/iot/add', (req, res) => {
     res.render('iota/iot/add', { typeOptions, dateNow });
 })
 
-app.post('/iota/iot/add', async(req, res) => {
+app.post('/iota/iot/add', async (req, res) => {
     const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
     let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
@@ -208,7 +206,9 @@ app.get('/iota/:any', (req, res) => {
     res.render(`iota/${any}`);
 })
 
-
+app.use((req, res) => {
+    res.redirect('/iota/iot/');
+})
 
 app.listen(4000, () => {
     console.log('Listening on port 4000')
