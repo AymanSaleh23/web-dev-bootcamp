@@ -50,9 +50,8 @@
                                             <label for="dev_name">Device Name</label>
                                         </div>
                                         <div class="col">
-                                            <input type="text" class="form-control" required id="dev_name"
-                                                name="dev_name" placeholder="deviceName" minlength="5"
-                                                value="<%=founded.name%>">
+                                            <input type="text" class="form-control" id="dev_name" name="dev_name"
+                                                placeholder="deviceName" minlength="5" value="<%=founded.name%>">
                                         </div>
                                     </div>
 
@@ -66,8 +65,8 @@
                                         <div class="col">
                                             <input type="text" class="form-control" hidden id="dev_id" name="dev_id"
                                                 placeholder="uniqueID" min="1000" max="1024" value="<%=founded.id%>">
-                                            <input type="text" class="form-control" required placeholder="uniqueID"
-                                                min="1000" max="1024" value="<%=founded.id%>" disabled>
+                                            <input type="text" class="form-control" placeholder="uniqueID" min="1000"
+                                                max="1024" value="<%=founded.id%>" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +80,7 @@
                                         <div class="col">
                                             <input type="text" class="form-control" hidden id="dev_owner"
                                                 name="dev_owner" placeholder="dev_owner" value="<%=founded.owner%>">
-                                            <input type="text" class="form-control" required placeholder="owner"
+                                            <input type="text" class="form-control" placeholder="owner"
                                                 value="<%=founded.owner%>" disabled>
                                         </div>
                                     </div>
@@ -93,7 +92,7 @@
                                         <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Device
                                                 Location</label>
                                         </div>
-                                        <div class="col"><input type="text" class="form-control" required id="dev_loc"
+                                        <div class="col"><input type="text" class="form-control" id="dev_loc"
                                                 name="dev_loc" placeholder="location of Device"
                                                 value="<%=founded.location%>">
                                         </div>
@@ -148,8 +147,9 @@
                                         </div>
                                         <div class="row">
                                             <input type="date" class="form-control" id="DateToExp" name="DateToExp"
-                                                min=<%=dateNow%>
-                                            value=<%=founded.expData.toISOString().split(':')[0].substring(0, 10) %> >
+                                            min="<%=founded.expData? founded.expData:dateNow%>"    
+                                            value=<%=founded.expData?founded.expData.toISOString().split(':')[0].substring(0, 10):dateNow%>
+                                            <%= founded.exp===true?"":"disabled" %> >
                                         </div>
                                     </div>
                                 </div>
@@ -202,6 +202,7 @@
         </main>
         <%- include('../footer'); %>
             <script src="../../../js/navBarEvents.js"></script>
+            <script src="../../../js/modify.js"></script>
 </body>
 
 </html>
