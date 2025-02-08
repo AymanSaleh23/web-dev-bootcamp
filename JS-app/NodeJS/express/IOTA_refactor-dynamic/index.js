@@ -1,10 +1,13 @@
 const express = require('express');
+const app = express()
+
 const { v4: uuid } = require('uuid'); //For generating ID's
 const methodOverride = require('method-override')
 const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan')
 const typeOptions = ['long', 'boolean', 'int', 'float', 'string', 'double']
+const AppError = require('./appError')
 
 mongoose.connect('mongodb://localhost:27017/iotdevs')
     .then(() => {
@@ -13,8 +16,6 @@ mongoose.connect('mongodb://localhost:27017/iotdevs')
     .catch(() => {
         console.log('Connection Error');
     });
-
-const app = express()
 
 const deviceSchema = new mongoose.Schema(
     {
@@ -80,6 +81,7 @@ app.use(methodOverride('_method'))
 app.use(express.json())
 //  Simple logger tool
 app.use(morgan('tiny'))
+//A middle ware for  getting the date of the request
 app.use((req, res, next) => {
     const reqDate = Date.now()
     console.log(reqDate)
@@ -87,52 +89,78 @@ app.use((req, res, next) => {
     req.requstDate = new Date(reqDate).toISOString()
     next();
 })
+
 let iotDevs = [];
 
 app.get('/iota', (req, res) => {
     res.render('iota/iota');
 })
 
-app.get('/iota/iot/active', async (req, res) => {
+app.get('/iota/iot/active', async (req, res, next) => {
     console.log('/iota/iot/active')
-    iotDevs = await device.find({ expState: false })
-    res.render('iota/iot/show', { iotDevs, state: "Active" });
+    try {
+        iotDevs = await device.find({ expState: false })
+        if (!iotDevs) {
+            throw new AppError("Can't connect to DataBase!", 500);
+        }
+        res.render('iota/iot/show', { iotDevs, state: "Active" });
+    } catch (e) {
+        next(e)
+    }
 })
-app.get('/iota/iot/inactive', async (req, res) => {
+app.get('/iota/iot/inactive', async (req, res, next) => {
     console.log('/iota/iot/inactive')
-    iotDevs = await device.find({ expState: true })
-    res.render('iota/iot/show', { iotDevs, state: "In-Active" });
+    try {
+        iotDevs = await device.find({ expState: true })
+        if (!iotDevs) {
+            throw new AppError("Can't connect to DataBase!", 500);
+        }
+        res.render('iota/iot/show', { iotDevs, state: "In-Active" });
+    } catch (e) {
+        next(e)
+    }
 })
-app.get('/iota/iot/', async (req, res) => {
+app.get('/iota/iot/', async (req, res, next) => {
     console.log('/iota/iot/all')
-    iotDevs = await device.find({})
+    try {
+        iotDevs = await device.find({})
+        if (!iotDevs) {
+            throw new AppError("Can't connect to DataBase!", 500);
+        }
+    } catch (e) {
+        next(e);
+    }
     res.render('iota/iot/show', { iotDevs, state: "All" });
 })
 
-app.post('/iota/iot/delete/:devID', async (req, res) => {
+app.post('/iota/iot/delete/:devID', async (req, res, next) => {
     const { dev_id } = req.body;
     const data = await device.find({ id: dev_id })
-
+    if (!data) {
+        return next(new AppError("Device is not found to Delete", 404));
+    }
     console.log('Deleting');
     console.log(`Device detected`);
     console.log(data);
     console.log(`Device will be deleted`);
-    const q = await device.deleteOne({ id: dev_id })
     try {
+        const q = await device.deleteOne({ id: dev_id });
         console.log(q)
-    }
-    catch (e) {
-        console.log(e)
-        console.log(`Error while deleting! ${e}`);
+        throw new AppError(e.message + "\nDevice can't be Deleted", 500);
+    } catch (e) {
+        next(e);
     }
     console.log(`${req.path}`)
     res.redirect(`../${req.path}`)
 })
 
-app.get('/iota/iot/modify/:devID', (req, res) => {
+app.get('/iota/iot/modify/:devID', async (req, res, next) => {
     const devID = req.params.devID
     console.log(devID)
-    const founded = iotDevs.find(dev => dev.id === devID);
+    const founded = await iotDevs.find(dev => dev.id === devID);
+    if (!founded) {
+        return next(new AppError("Device is not found to modify", 404));
+    }
     console.log(`The IOT dev will modified`, founded);
     dateNow = req.requstDate.split(':')[0].substring(0, 10)
     res.render('iota/iot/modify', { founded, typeOptions, dateNow });
@@ -144,17 +172,21 @@ app.patch('/iota/iot/modify/:devId', async (req, res) => {
     cb_exp = (cb_exp) ? (true) : (false);
     cb_en = (cb_en) ? (true) : (false);
     console.log(`cb_en ${cb_en}`)
-    const q = await device.updateOne({ id: dev_id }, {
-        owner: dev_owner,
-        name: dev_name,
-        location: dev_loc,
-        exp: cb_exp,
-        expData: DateToExp,
-        expState: cb_en,
-        dataType: dev_dataTy,
-        about: devAbout
-    }, { new: true, runValidators: true })
-
+    try {
+        const q = await device.updateOne({ id: dev_id }, {
+            owner: dev_owner,
+            name: dev_name,
+            location: dev_loc,
+            exp: cb_exp,
+            expData: DateToExp,
+            expState: cb_en,
+            dataType: dev_dataTy,
+            about: devAbout
+        }, { new: true, runValidators: true });
+        throw new AppError(e.message + "\nDevice can't be Modified", 500);
+    } catch (e) {
+        next(e);
+    }
     res.redirect('../');
 })
 
@@ -165,7 +197,7 @@ app.get('/iota/iot/add', (req, res) => {
     res.render('iota/iot/add', { typeOptions, dateNow });
 })
 
-app.post('/iota/iot/add', async (req, res) => {
+app.post('/iota/iot/add', async (req, res, next) => {
     const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
     let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
@@ -177,16 +209,21 @@ app.post('/iota/iot/add', async (req, res) => {
     else {
         dev = new device({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy })
         const data = await dev.save();
+        if (!data) {
+            return next(new AppError("Can't Add this Device", 500));
+        }
         console.log(`Added device ${data}`)
     }
 
     res.redirect('/iota/iot/');
 })
 
-app.get('/iota/iot/details/:id', (req, res) => {
+app.get('/iota/iot/details/:id', async (req, res, next) => {
     const dev_id = req.params.id
-    let dev = iotDevs.find(dev => dev.id === dev_id);
-
+    let dev = await iotDevs.find(dev => dev.id === dev_id);
+    if (!dev) {
+        return next(new AppError('Device Not Found', 404));
+    }
     console.log(`The IOT dev will detailed`, dev);
     res.render(`iota/iot/details`, { dev });
 
@@ -209,6 +246,11 @@ app.get('/iota/:any', (req, res) => {
 app.use((req, res) => {
     res.redirect('/iota/iot/');
 })
+
+app.use((error, req, res, next) => {
+    const { message = 'Something went wrong', satus = 500 } = error
+    res.status(satus).send(message)
+});
 
 app.listen(4000, () => {
     console.log('Listening on port 4000')

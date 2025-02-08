@@ -42,7 +42,7 @@
                 <form action="/iota/iot/add" method="POST">
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col-sm-12">
-                            <div class="form-group text-center">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 col-sm-12">
                                         <label for="dev_name">Device Name</label>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="form-group text-center">
+                            <div class="form-group ">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Device Owner</label>
                                     </div>
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="form-group text-center">
+                            <div class="form-group ">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Device
                                             Location</label>
@@ -81,24 +81,24 @@
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col text-center">
+                                    <div class="col-8 ">
                                         <label for="cb_exp"> Allow Device Expire</label>
                                     </div>
-                                    <div class=" col text-center">
+                                    <div class=" col ">
                                         <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col text-center">
+                                    <div class="col-8 ">
                                         <label for="cb_en"> Starting Disable</label>
                                     </div>
-                                    <div class=" col text-center">
+                                    <div class=" col">
                                         <input type="checkbox" class="form-control" name="cb_en" id="cb_en">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
                             <div class="col">
                                 <div class="form-group ">
                                     <div class="row text-center">
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-8 col-lg-4">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
                             <div class="form-group text-center">
                                 <div class="col text-center">
                                     <div class="row"><label for="dev_dataTy">Data holder</label></div>
@@ -125,14 +125,17 @@
                                                     <%=typeOptions[option]%>
                                                 </option>
                                                 <% }%>
-
-
-
                                         </select></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col text-center">
+
+                        <div class="col-lg-4 col-md-5 col-sm-6">
+                            <label for="dev_img">Image</label>
+                            <input type="file" id="dev_img" accept="image/*">
+                        </div>
+
+                        <div class="col ">
                             <div class="col-lg-4 col-md-5 col-sm-12">
                                 <label for="dev_about">More about</label>
                             </div>

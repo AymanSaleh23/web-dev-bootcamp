@@ -41,131 +41,150 @@
             <div
                 class="container shadow-lg p-5 bg-light border rounded d-flex justify-content-center align-items-center">
                 <form action="/iota/iot/modify/<%=founded.id%>?_method=PATCH" method="POST">
-                    <div class="row d-flex justify-content-center align-items-center">
-                        <div class="col-sm-12">
-                            <div class="form-group text-center">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12">
-                                        <label for="dev_name">Device Name</label>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" required id="dev_name" name="dev_name"
-                                            placeholder="deviceName" minlength="5" value="<%=founded.name%>">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group text-center">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Device ID</label>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" hidden id="dev_id" name="dev_id"
-                                            placeholder="uniqueID" min="1000" max="1024" value="<%=founded.id%>">
-                                        <input type="text" class="form-control" required placeholder="uniqueID"
-                                            min="1000" max="1024" value="<%=founded.id%>" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group text-center">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_owner"> Device
-                                            Owner</label>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" hidden id="dev_owner" name="dev_owner"
-                                            placeholder="dev_owner" value="<%=founded.owner%>">
-                                        <input type="text" class="form-control" required placeholder="owner"
-                                            value="<%=founded.owner%>" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group text-center">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Device
-                                            Location</label>
-                                    </div>
-                                    <div class="col"><input type="text" class="form-control" required id="dev_loc"
-                                            name="dev_loc" placeholder="location of Device"
-                                            value="<%=founded.location%>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label for="cb_exp"> Allow Device Expire</label>
-                                    </div>
-                                    <div class=" col text-center">
-                                        <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp" 
-                                        <%if (founded.exp===true ) {%>
-                                        checked
-                                        <%}%>>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label for="cb_en"> Disable Device</label>
-                                    </div>
-                                    <div class=" col text-center">
-                                        <input type="checkbox" class="form-control" name="cb_en" id="cb_en" 
-                                        <%if (founded.expState===true ) {%>
-                                        checked
-                                        <%}%>>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6 col-lg-4">
-                            <div class="col">
+                    <div class="row d-flex justify-content-around align-items-center">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="col-sm-12">
                                 <div class="form-group ">
-                                    <div class="row text-center">
-                                        <label for="DateToExp"> Enter Date of Expiration</label>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-5 col-sm-12">
+                                            <label for="dev_name">Device Name</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" required id="dev_name"
+                                                name="dev_name" placeholder="deviceName" minlength="5"
+                                                value="<%=founded.name%>">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Device ID</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" hidden id="dev_id" name="dev_id"
+                                                placeholder="uniqueID" min="1000" max="1024" value="<%=founded.id%>">
+                                            <input type="text" class="form-control" required placeholder="uniqueID"
+                                                min="1000" max="1024" value="<%=founded.id%>" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_owner"> Device
+                                                Owner</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" hidden id="dev_owner"
+                                                name="dev_owner" placeholder="dev_owner" value="<%=founded.owner%>">
+                                            <input type="text" class="form-control" required placeholder="owner"
+                                                value="<%=founded.owner%>" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_loc"> Device
+                                                Location</label>
+                                        </div>
+                                        <div class="col"><input type="text" class="form-control" required id="dev_loc"
+                                                name="dev_loc" placeholder="location of Device"
+                                                value="<%=founded.location%>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 my-2">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body text-center">
+                                    <img class="img-fluid rounded shadow-lg m-1"
+                                        style="width: 15rem; height:10rem; object-fit: cover;" src="<%=founded.img%>"
+                                        alt="Device Image">
+                                    <label for="dev_img" class="form-label fw-semibold">Upload Image</label>
+                                    <input type="file" class="form-control mb-3" id="dev_img" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-8 ">
+                                            <label for="cb_exp"> Allow Device Expire</label>
+                                        </div>
+                                        <div class=" col ">
+                                            <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp" <%if
+                                                (founded.exp===true ) {%>
+                                            checked
+                                            <%}%>>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <input type="date" class="form-control" id="DateToExp" name="DateToExp"
-                                            min=<%=dateNow%>
+                                        <div class="col-8">
+                                            <label for="cb_en"> Disable Device</label>
+                                        </div>
+                                        <div class=" col ">
+                                            <input type="checkbox" class="form-control" name="cb_en" id="cb_en" <%if
+                                                (founded.expState===true ) {%>
+                                            checked
+                                            <%}%>>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="col">
+                                    <div class="form-group ">
+                                        <div class="row text-center">
+                                            <label for="DateToExp"> Enter Date of Expiration</label>
+                                        </div>
+                                        <div class="row">
+                                            <input type="date" class="form-control" id="DateToExp" name="DateToExp"
+                                                min=<%=dateNow%>
                                             value=<%=founded.expData.toISOString().split(':')[0].substring(0, 10) %> >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group text-center">
+                                    <div class="col text-center">
+                                        <div class="row"><label for="dev_dataTy">Data holder</label></div>
+                                        <div class="row"><select name="dev_dataTy" id="dev_dataTy" class="form-control"
+                                                required>
+                                                <% for (let option of typeOptions) { %>
+                                                    <option value=<%=option%> name="n_t" <% if (
+                                                            founded.dataType===option){%>
+                                                            selected<% } %>
+                                                                > <%=option%>
+                                                                    <%}%>
+                                                    </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-8 col-lg-4">
-                            <div class="form-group text-center">
-                                <div class="col text-center">
-                                    <div class="row"><label for="dev_dataTy">Data holder</label></div>
-                                    <div class="row"><select name="dev_dataTy" id="dev_dataTy" class="form-control"
-                                            required>
-                                            <% for (let option of typeOptions) { %>
-                                                <option value=<%=option%> name="n_t" <% if (
-                                                        founded.dataType===option){%>
-                                                        selected<% } %>
-                                                            > <%=option%>
-                                                                <%}%>
-                                                </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col text-center">
+
+                        <div class="col-lg-8 col-md-12">
                             <div class="col-lg-4 col-md-5 col-sm-12">
                                 <label for="dev_about">More about</label>
                             </div>
                             <div class="col">
-                                <textarea class="form-control" id="dev_about" rows="3" name="devAbout"
+                                <textarea class="form-control" id="dev_about" rows="6" name="devAbout"
                                     placeholder="Write about this Device"><%=founded.about%></textarea>
                             </div>
                         </div>
+
+
                     </div>
 
             </div>
