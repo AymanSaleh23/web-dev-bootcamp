@@ -39,7 +39,7 @@
         <main>
             <div
                 class="container shadow-lg p-5 bg-light border rounded d-flex justify-content-center align-items-center">
-                <form action="/iota/iot/add" method="POST">
+                <form action="/iota/iot/add" method="POST" class="validated-form" id="formAdd" novalidate>
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col-sm-12">
                             <div class="form-group">
@@ -49,20 +49,27 @@
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" required id="dev_name" name="dev_name"
-                                            placeholder="deviceName" minlength="5">
+                                            placeholder="Device Name" minlength="5">
+                                        <div class="valid-feedback">Looks good!</div>
+                                        <div class="invalid-feedback">Need 5 characters at least!</div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
+
                         <div class="col-sm-12">
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 col-sm-12"><label for="dev_id"> Device Owner</label>
                                     </div>
                                     <div class="col"><input type="text" class="form-control" required id="dev_owner"
-                                            name="dev_owner" placeholder="owner name">
+                                            name="dev_owner" placeholder="owner name" minlength="5">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Need 5 characters At least!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +81,14 @@
                                             Location</label>
                                     </div>
                                     <div class="col"><input type="text" class="form-control" required id="dev_loc"
-                                            name="dev_loc" placeholder="location of Device"></div>
+                                            name="dev_loc" placeholder="location of Device">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Enter a Valid Location!
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +99,8 @@
                                         <label for="cb_exp"> Allow Device Expire</label>
                                     </div>
                                     <div class=" col ">
-                                        <input type="checkbox" class="form-control" name="cb_exp" id="cb_exp">
+                                        <input type="checkbox" class="form-control form-check-input" name="cb_exp"
+                                            id="cb_exp">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -93,7 +108,8 @@
                                         <label for="cb_en"> Starting Disable</label>
                                     </div>
                                     <div class=" col">
-                                        <input type="checkbox" class="form-control" name="cb_en" id="cb_en">
+                                        <input type="checkbox" class="form-control form-check-input" name="cb_en"
+                                            id="cb_en">
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +122,12 @@
                                     </div>
                                     <div class="row">
                                         <input type="date" class="form-control" id="DateToExp" name="DateToExp"
-                                            min=<%=dateNow%> value=<%=dateNow%>>
+                                            min=<%=dateNow%>
+                                        value=<%=dateNow%>>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +146,11 @@
                                                     <%=typeOptions[option]%>
                                                 </option>
                                                 <% }%>
-                                        </select></div>
+                                        </select>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -141,6 +166,10 @@
                             </div>
                             <div class="col"><textarea class="form-control" id="dev_about" rows="3" name="devAbout"
                                     placeholder="Write about this Device"></textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -158,6 +187,8 @@
         </main>
         <% include('../footer'); %>
             <script src="../../js/navBarEvents.js"></script>
+            <script src="../../js/validator.js"></script>
+
 </body>
 
 </html>
