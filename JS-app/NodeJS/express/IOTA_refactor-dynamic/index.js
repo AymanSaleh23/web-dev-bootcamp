@@ -194,7 +194,7 @@ app.get('/iota/iot/modify/:devID', wrapAsync(async (req, res, next) => {
 }));
 
 app.patch('/iota/iot/modify/:devId', wrapAsync(async (req, res) => {
-    const { dev_owner, dev_name, dev_id, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
+    const { dev_owner, dev_name, dev_id, dev_loc, DateToExp, dev_dataTy, devAbout, dev_img_url} = req.body
     let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
     cb_en = (cb_en) ? (true) : (false);
@@ -209,6 +209,7 @@ app.patch('/iota/iot/modify/:devId', wrapAsync(async (req, res) => {
         exp: cb_exp,
         expData: cb_exp ? DateToExp:dateNow,
         expState: cb_en,
+        img: dev_img_url?dev_img_url:this.img,
         dataType: dev_dataTy,
         about: devAbout
     }, { new: true, runValidators: true });
@@ -227,7 +228,7 @@ app.get('/iota/iot/add', (req, res) => {
 })
 
 app.post('/iota/iot/add', wrapAsync(async (req, res, next) => {
-    const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout } = req.body
+    const { dev_name, dev_owner, dev_loc, DateToExp, dev_dataTy, devAbout , dev_img_url } = req.body
     let { cb_exp, cb_en } = req.body
     cb_exp = (cb_exp) ? (true) : (false);
     cb_en = (cb_en) ? (true) : (false);
@@ -237,6 +238,9 @@ app.post('/iota/iot/add', wrapAsync(async (req, res, next) => {
     }
     else {
         dev = new device({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy })
+        if(dev_img_url){
+            dev.img=dev_img_url;
+        }
         const data = await dev.save();
         if (!data) {
             throw new AppError("Can't Add this Device", 500);

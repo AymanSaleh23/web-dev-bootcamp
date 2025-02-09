@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../../styles/navbarStyles.css">
 </head>
 
-<body>
 
     <%- include('../navbar'); %>
         <header>
@@ -123,11 +122,10 @@
                                     <div class="row">
                                         <input type="date" class="form-control" id="DateToExp" name="DateToExp"
                                             min=<%=dateNow%>
-                                        value=<%=dateNow%>>
+                                        value=<%=dateNow%> disabled>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -156,9 +154,17 @@
                         </div>
 
                         <div class="col-lg-4 col-md-5 col-sm-6">
-                            <label for="dev_img">Image</label>
-                            <input type="file" id="dev_img" accept="image/*">
+                            <div class="col my-1">
+                                <label for="dev_img">Image</label>
+                                <input type="file" id="dev_img" accept="image/*">
+                            </div>
+                            <div class="col my-1">
+                                <label for="dev_img_url">Image URL</label>
+                                <input type="text" class="form-control" id="dev_img_url" name="dev_img_url"
+                                    placeholder="img url">
+                            </div>
                         </div>
+
 
                         <div class="col ">
                             <div class="col-lg-4 col-md-5 col-sm-12">
@@ -177,7 +183,7 @@
 
             <div class="col-sm-12">
                 <div class="form-group text-center">
-                    <button class="btn btn-success">Verify Node</button>
+                    <button class="btn btn-success" type="submit">Verify Node</button>
                     <a href="." class="btn btn-warning">Cancel</a>
                 </div>
             </div>
@@ -188,6 +194,7 @@
         <% include('../footer'); %>
             <script src="../../js/navBarEvents.js"></script>
             <script src="../../js/validator.js"></script>
+            <script src="../../js/add.js"></script>
 
 </body>
 

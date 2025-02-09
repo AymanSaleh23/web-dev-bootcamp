@@ -1,7 +1,7 @@
-z(function () {
+(function () {
     'use strict';
     window.addEventListener('load', function () {
-        var forms = document.querySelectorAll('.validated-form');
+        let forms = document.querySelectorAll('.validated-form');
 
         forms.forEach(function (form) {
             form.addEventListener('submit', function (event) {
