@@ -36,7 +36,7 @@
             </div>
         </header>
         <main>
-            <div class="container d-felx flex-column align-items-center flex-nowrap mt-5">
+            <div class="container d-felx flex-column align-items-center flex-nowrap mt-5 col-lg-6 col-md-12 col-12">
                 <div
                     class="container d-flex flex-row flex-wrap align-items-center justify-content-center align-content-center">
 
@@ -73,16 +73,23 @@
                                     <%= (dev.expState)?"Expired":"Available"%>
                                 </strong><br>
                                 <% if (dev.expState===false ) { %>
-                                    Expire Date:<strong>
-                                        <%= dev.expData %>
-                                    </strong><br>
-                                    <%} else if (dev.expData) {%>
-                                        <strong> Forever access.</strong><br>
-                                        <%}%>
+                                    Expire Date:
+                                    <% if (dev.exp){ %>
+                                        <strong>
+                                            <%= formatTimeStamp(dev.expData) %>
+                                        </strong><br>
+                                        <%} else {%>
+                                            <strong> Forever access.</strong><br>
+                                            <%}%>
+                                                <%}%>
+
                             </p>
                             <p> <i>
                                     <textarea name="" id="" class=" col" disabled rows="4"><%= dev.about %></textarea>
-
+                                    <label class="display-4" style="font-size: 1rem; font-style: normal; font-weight: 400;">Previous Data</label>
+                                    <textarea name="" id="" class="col" disabled rows="<%=dev.data.length%>"><% for (let record of dev.data) {%>
+<%=formatTimeStamp(record.timeStamp)%>: <%=record.data%><%}%>
+</textarea>
                                 </i>
                             </p>
 
