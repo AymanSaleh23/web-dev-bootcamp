@@ -1,13 +1,19 @@
-var express = require('express')
-var OTA_router = express.Router()
+let { app, wrapAsync, viewFilter, uuid, typeOptions, cookieParser } = require('../../model/shared')
+const AppError = require('../../appError')
 
+app.use(cookieParser())
 
-OTA_router.get('/iota/ota', (req, res) => {
+//A middle ware for  getting the date of the request
+app.use((req, res, next) => {
+    console.log('Cookies: ', req.cookies)
+    next()
+})
+
+app.get('/iota/ota', (req, res) => {
     res.render('iota/ota/show');
 })
 
-OTA_router.get('/iota/ota/add', (req, res) => {
+app.get('/iota/ota/add', (req, res) => {
     res.render('iota/ota/add');
 })
 
-module.exports = { OTA_router }

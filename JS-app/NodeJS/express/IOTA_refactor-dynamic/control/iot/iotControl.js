@@ -1,4 +1,4 @@
-let { app, wrapAsync, viewFilter, uuid, typeOptions, cookieParser } = require('../../model/iot/shared')
+let { app, wrapAsync, viewFilter, uuid, typeOptions, cookieParser } = require('../../model/shared')
 let { device, sensordata, iotDevs } = require('../../model/iot/device')
 const AppError = require('../../appError')
 
@@ -14,6 +14,10 @@ app.use((req, res, next) => {
     console.log(reqDate)
     console.log(req.path)
     req.requstDate = new Date(reqDate).toISOString()
+    
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    console.log(res.locals)
     next();
 })
 
@@ -80,6 +84,7 @@ app.get('/iota/iot/', wrapAsync(async (req, res, next) => {
     if (!iotDevs) {
         throw new AppError("Can't connect to DataBase!", 500);
     }
+    req.flash("Founded",`Founded ${iotDevs.length} Devices`)
     res.render('iota/iot/show', { iotDevs, state: "All" });
 }, "GET: ALL : Can't reach DB"));
 
@@ -88,6 +93,7 @@ app.post('/iota/iot/delete/:devID', wrapAsync(async (req, res, next) => {
     const { dev_id } = req.body;
     const data = await device.find({ id: dev_id })
     if (!data) {
+        req.flash('error',`Device Can't be Deleted Successfully!`)
         return next(new AppError("Device is not found to Delete", 404));
     }
     console.log('Deleting');
@@ -97,9 +103,17 @@ app.post('/iota/iot/delete/:devID', wrapAsync(async (req, res, next) => {
 
     const q = await device.deleteOne({ id: dev_id });
     console.log(q)
-
+    if (q.deletedCount === 1){
+        console.log(`q.deletedCount: ${q.deletedCount}`)
+        req.flash('success',`Device has Deleted Successfully!`)
+    }
+    else {
+        console.log(`q.deletedCount: ${q.deletedCount}`)
+        req.flash('error',`Device Can't be Deleted Successfully!`)
+        return next(new AppError("Device is Can't be Deleted", 500));
+    }
     console.log(`${req.path}`)
-    res.redirect(`../${req.path}`)
+    res.redirect(`/iota/iot`)
 }, "POST: DELETE: Can't Delete from DB"));
 
 app.get('/iota/iot/modify/:devID', wrapAsync(async (req, res, next) => {
@@ -107,6 +121,8 @@ app.get('/iota/iot/modify/:devID', wrapAsync(async (req, res, next) => {
     console.log(devID)
     const founded = await device.findOne({ id: devID });
     if (!founded) {
+        req.flash('error',`Device is not found to modify!`);
+        res.redirect('/iota/iot/')
         throw new AppError("Device is not found to modify", 404);
     }
     console.log(`The IOT dev will modified`, founded);
@@ -136,8 +152,10 @@ app.patch('/iota/iot/modify/:devId', wrapAsync(async (req, res) => {
     }, { new: true, runValidators: true });
     console.log(q);
     if (!q) {
+        req.flash('error',`Device hasn't Modified Successfully!`)
         throw new AppError(e.message + "\nDevice can't be Modified", 500);
     }
+    req.flash('success',`Device has Modified Successfully!`)
     res.redirect('../');
 }));
 
@@ -152,6 +170,7 @@ app.post('/iota/iot/add', wrapAsync(async (req, res, next) => {
     const { dev_name, dev_owner, dev_loc, dev_dataTy, devAbout, dev_img_url } = req.body
     let { DateToExp } = req.body
     let { cb_exp, cb_en } = req.body
+    const newId = uuid()
     cb_exp = (cb_exp) ? (true) : (false);
     cb_en = (cb_en) ? (true) : (false);
 
@@ -162,17 +181,17 @@ app.post('/iota/iot/add', wrapAsync(async (req, res, next) => {
     console.log(`req:`)
     console.log(req.body)
     console.log(DateToExp)
-    dev = new device({ owner: dev_owner, name: dev_name, id: uuid(), location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy, data: [] })
+    dev = new device({ owner: dev_owner, name: dev_name, id: newId, location: dev_loc, exp: cb_exp, expData: new Date(DateToExp), expState: cb_en, about: devAbout, dataType: dev_dataTy.toLowerCase(), data: [] })
     if (dev_img_url) {
         dev.img = dev_img_url;
     }
     const data = await dev.save();
     if (!data) {
+        req.flash('error',`Device hasn't added Successfully!`)
         throw new AppError("Can't Add this Device", 500);
     }
     console.log(`Added device ${data}`)
-
-
+    req.flash('success',`Device has added Successfully!`)
     res.redirect('/iota/iot/');
 }));
 
@@ -180,6 +199,8 @@ app.get('/iota/iot/details/:id', wrapAsync(async (req, res, next) => {
     const dev_id = req.params.id
     let dev = await device.findOne({ id: dev_id }).populate('data');
     if (!dev) {
+        req.flash('error',`Device ${dev_id} Not Found`)
+        res.redirect('/iota/iot/');
         throw new AppError('Device Not Found', 404);
     }
     console.log(`The IOT dev will detailed`, dev);

@@ -14,3 +14,12 @@ document.head.insertAdjacentHTML(
     'beforeend',
     `<link rel="icon" type="image/x-icon" href="/imgs/logo/icon.png">`
 );
+
+setTimeout(function () {
+    let alertBox = document.getElementById("operationsStatus");
+    if (alertBox) {
+        alertBox.style.transition = "opacity 300ms ease";
+        alertBox.style.opacity = "0"; // Fade out
+        setTimeout(() => alertBox.style.display = "none", 1000); // Hide after fade
+    }
+}, 5000);

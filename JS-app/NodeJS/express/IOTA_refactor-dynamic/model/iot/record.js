@@ -1,4 +1,4 @@
-const { mongoose, Schema, typeOptions } = require('./shared')
+const { mongoose, Schema, typeOptions } = require('../shared')
 const recordSchema = new Schema({
     dataType: {
         type: String,

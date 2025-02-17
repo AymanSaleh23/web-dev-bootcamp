@@ -1,5 +1,5 @@
 
-const {mongoose, uuid, Schema, typeOptions} = require('./shared')
+const {mongoose, uuid, Schema, typeOptions} = require('../shared')
 const {sensordata} = require('./record')
 
 let iotDevs = [];
