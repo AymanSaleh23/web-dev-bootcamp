@@ -1,8 +1,14 @@
-let { app, wrapAsync, viewFilter, uuid, typeOptions } = require('../../model/iot/shared')
+let { app, wrapAsync, viewFilter, uuid, typeOptions, cookieParser } = require('../../model/iot/shared')
 let { device, sensordata, iotDevs } = require('../../model/iot/device')
 const AppError = require('../../appError')
 
+app.use(cookieParser())
+
 //A middle ware for  getting the date of the request
+app.use((req, res, next) => {
+    console.log('Cookies: ', req.cookies)
+    next()
+})
 app.use((req, res, next) => {
     const reqDate = Date.now()
     console.log(reqDate)
@@ -27,7 +33,7 @@ function formatTimeStamp(timestamp) {
 app.get('/iota/iot/longlife', wrapAsync(async (req, res, next) => {
     console.log('/iota/iot/longlife')
 
-    iotDevs = await viewFilter(device, { exp: false })
+    iotDevs = await viewFilter(device, { exp: false },"data")
     if (!iotDevs) {
         throw new AppError("Can't connect to DataBase!", 500);
     }
@@ -38,7 +44,7 @@ app.get('/iota/iot/longlife', wrapAsync(async (req, res, next) => {
 app.get('/iota/iot/expirable', wrapAsync(async (req, res, next) => {
     console.log('/iota/iot/expirable')
 
-    iotDevs = await viewFilter(device, { exp: true })
+    iotDevs = await viewFilter(device, { exp: true },"data")
     if (!iotDevs) {
         throw new AppError("Can't connect to DataBase!", 500);
     }
@@ -49,7 +55,7 @@ app.get('/iota/iot/expirable', wrapAsync(async (req, res, next) => {
 app.get('/iota/iot/active', wrapAsync(async (req, res, next) => {
     console.log('/iota/iot/active')
 
-    iotDevs = await viewFilter(device, { expState: false })
+    iotDevs = await viewFilter(device, { expState: false },"data")
     if (!iotDevs) {
         throw new AppError("Can't connect to DataBase!", 500);
     }
@@ -60,7 +66,7 @@ app.get('/iota/iot/active', wrapAsync(async (req, res, next) => {
 app.get('/iota/iot/inactive', wrapAsync(async (req, res, next) => {
     console.log('/iota/iot/inactive')
 
-    iotDevs = await viewFilter(device, { expState: true })
+    iotDevs = await viewFilter(device, { expState: true },"data")
     if (!iotDevs) {
         throw new AppError("Can't connect to DataBase!", 500);
     }
@@ -70,7 +76,7 @@ app.get('/iota/iot/inactive', wrapAsync(async (req, res, next) => {
 
 app.get('/iota/iot/', wrapAsync(async (req, res, next) => {
     console.log('/iota/iot/all')
-    iotDevs = await viewFilter(device, {})
+    iotDevs = await viewFilter(device, {},"data")
     if (!iotDevs) {
         throw new AppError("Can't connect to DataBase!", 500);
     }

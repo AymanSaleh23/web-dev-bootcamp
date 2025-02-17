@@ -1,4 +1,6 @@
 const express = require('express');
+const cookieParser = require('cookie-parser')
+
 const app = express()
 
 const { v4: uuid } = require('uuid'); //For generating ID's
@@ -17,8 +19,8 @@ function wrapAsync(fn, msg = "Something went worng!") {
     }
 }
 
-async function viewFilter(db, condition) {
-    return db.find(condition)
+async function viewFilter(db, condition, populateFiled) {
+    return db.find(condition).populate(populateFiled)
 }
 
-module.exports = {express, app, wrapAsync, viewFilter, mongoose, uuid, Schema, typeOptions}
+module.exports = {express, app, wrapAsync, viewFilter, mongoose, uuid, Schema, typeOptions, cookieParser}

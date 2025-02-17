@@ -2,6 +2,7 @@
 const methodOverride = require('method-override')
 const path = require('path');
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
 
 const AppError = require('./appError')
 
@@ -21,6 +22,7 @@ app.use(methodOverride('_method'))
 app.use(express.json())
 //  Simple logger tool
 app.use(morgan('tiny'))
+app.use(cookieParser())
 
 require('./control/iot/iotControl')
 

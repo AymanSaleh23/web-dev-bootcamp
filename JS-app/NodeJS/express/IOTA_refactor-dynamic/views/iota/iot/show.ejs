@@ -126,10 +126,15 @@
 
                                         <!-- First form spans the entire width -->
                                         <div class="col m-1">
+                                            <%if (devs.data.length>0){ console.log(devs.data[0])}%>
+                                            <span class="col>"><%=devs.dataType.toUpperCase()%>: <strong class="text-info"><%=(devs.data.length>0)?devs.data[0].data:"--"%></strong></span>
                                             <form action="/iota/iot/details/<%=devs.id %>" method="get"
                                                 class="d-flex justify-content-center align-items-center ">
                                                 <button class="btn btn-primary w-100">Detail</button>
                                             </form>
+                                            
+                                               
+                                            
                                         </div>
 
                                         <!-- Second and third forms share the second row -->
